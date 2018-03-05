@@ -34,6 +34,10 @@
   right: 20px;
 }
 
+swiper-item{
+  overflow-y: scroll;
+}
+
 .tab-header {
   display: flex;
   justify-content: space-between;
