@@ -1,4 +1,14 @@
-<tag-list tags="{{tags}}"></tag-list>
+<view class='avatar-container'>
+  <image class="avatar" 
+  src="{{item.avatar || '../../asset/img/avatar-man.png'}}" mode="scaleToFill"></image>
+
+  <view class='userCenter-header-bottom'>
+      <view class='child-school' wx:if="{{childNickName}}">{{childNickName}}</view>
+      <view class='child-sign text-ellipsis' wx:if="{{sign}}">{{sign}}</view>
+    </view>
+</view>
+
+ <tag-list tags="{{tags}}"></tag-list> 
 
 <view class='userCenter-footer'>
   <view class='footer-title'>评价（{{totalElements}}）</view>
