@@ -1,0 +1,4 @@
+<!--components/imgUploader/imgUploader.wxml-->
+  <view class='btn btn-upload' bindtap='upload'>
+    <slot></slot>
+  </view>
