@@ -7,7 +7,10 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+  <view class='btn-primary ripple'>登陆</view>
+  <view class='btn-primary ripple'>老师中心</view>
+  <view class='btn-primary ripple'>设置</view>
+  <view class='btn-primary ripple'>评价</view>
+  <view class='btn-primary ripple'>学员详情</view>
 </view>

@@ -1,16 +1,56 @@
 {
   "pages": [
+    "pages/userCenter/userCenter",
     "pages/index/index",
     "pages/logs/logs",
     "pages/course/couseDetail",
     "pages/child/childDetail",
     "pages/login/login",
-    "pages/userCenter/userCenter"
+    "pages/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ccc",
     "navigationBarTitleText": "首页",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "tabBar": {
+    "color": "#1E293C",
+    "selectedColor": "#5EE495",
+    "borderStyle": "black",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "我的",
+        "pagePath": "pages/userCenter/userCenter",
+        "iconPath": "asset/img/tabIcon-org.png",
+        "selectedIconPath": "asset/img/tabIcon-org-active.png"
+      },
+      {
+        "text": "孩子详情",
+        "pagePath": "pages/child/childDetail",
+        "iconPath": "asset/img/tabIcon-org.png",
+        "selectedIconPath": "asset/img/tabIcon-org-active.png"
+      },
+      {
+        "text": "登陆",
+        "pagePath": "pages/login/login",
+        "iconPath": "asset/img/tabIcon-org.png",
+        "selectedIconPath": "asset/img/tabIcon-org-active.png"
+      },
+      {
+        "text": "课程详情",
+        "pagePath": "pages/course/couseDetail",
+        "iconPath": "asset/img/tabIcon-org.png",
+        "selectedIconPath": "asset/img/tabIcon-org-active.png"
+      },
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "asset/img/tabIcon-org.png",
+        "selectedIconPath": "asset/img/tabIcon-org-active.png"
+      }
+    ]
+  },
+  "debug": true
 }

@@ -1,1 +1,77 @@
-/* pages/login/login.wxss */
+/* pages/login/LoginPage.wxss */
+
+.page {
+  padding: 40px;
+}
+
+.header {
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: #d8d8d8;
+}
+
+.notice {
+  margin-top: 25px;
+  font-size: 16px;
+  color: #1e293c;
+  line-height: 16px;
+}
+
+.body {
+  margin-top: 40px;
+}
+
+.form-control {
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 25px;
+}
+
+.form-control input {
+  border: none;
+  color: #a4afbf;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.form-control.with-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-control.with-btn input {
+  width: 60%;
+}
+
+.btn-send {
+  color: #2ad5f3;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.footer {
+  margin-top: 130px;
+  text-align: right;
+}
+
+.btn-login {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50px;
+  background: #2ad5f3;
+  color: #fff;
+  text-align: center;
+  margin-left: 15px;
+}
+
+.icon-arrowsrightline {
+  font-size: 24px;
+}

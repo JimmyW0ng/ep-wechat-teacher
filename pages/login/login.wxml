@@ -1,2 +1,29 @@
-<!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<!--pages/login/LoginPage.wxml-->
+<view class="page">
+  <view class='header'>
+    <view>
+      <image class='avatar' bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      </view>
+    <view class='notice ripple'>欢迎回来 {{userInfo.nickName}} 老师</view>
+  </view>
+
+  <view class='body'>
+    <view class='form-control'>
+      <input maxlength="11" type="number" value="{{phone}}" bindinput="bindPhoneInput" placeholder="手机号码" />
+    </view>
+    <view class='form-control with-btn'>
+      <input maxlength="6" type="number" value="{{captcha}}" bindinput="bindCaptchaInput" placeholder="验证码" />
+      <view class='btn-send ripple' bindtap='doGetCaptcha'>
+        {{verifyBtnText}}
+      </view>
+    </view>
+  </view>
+
+  <view class='footer'>
+    
+    <view class='btn-login ripple' bindtap='doLogin'>
+      <!-- 登陆 -->
+      <view class="iconfont icon-arrowsrightline"></view>
+    </view>
+  </view>
+</view>

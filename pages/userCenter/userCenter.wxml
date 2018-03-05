@@ -1,2 +1,73 @@
 <!--pages/userCenter/userCenter.wxml-->
-<text>pages/userCenter/userCenter.wxml</text>
+<view class='header'>
+  <image class='avatar' src='../../asset/img/avatar-woman.png' mode=''></image>
+
+  <view class='info'>
+    <view class='name'>fuck</view>
+    <view class='ogn'>haohao机构</view>
+    <view class='id'>认证编号：1231</view>
+  </view>
+
+  <view class='icon-setting'>设置</view>
+</view>
+
+<view class='body'>
+  <view class='tab-header' style="display: flex; flex-direction:row;">
+    <view class="tab-selector {{selectedTab == 0 && 'active'}}" data-tab="0" bindtap='selectTab'>今日课程</view>
+    <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>全部课程</view>
+  </view>
+
+  <swiper style="height:{{swiperHeight}}px; padding-bottom: 50px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <view class='tab-content'>
+          <view class='course-list-item' wx:for="{{ognCourseList}}" wx:key="index" bindtap='goCourseDetailPage' data-item="{{item}}">
+            <view class='course-avatar-wrap'>
+              <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
+            </view>
+            <view class='course-info'>
+              <view class='course-org-name'>{{item.courseName}}</view>
+              <view class='course-simple-info'>
+                <view class='course-name'>
+                  <view class='basic'>{{item.courseIntroduce}}</view>
+                  <view class='course-hour'>1/24课时</view>
+                </view>
+              </view>
+              <view class='course-bottom-info'>
+                <view class='course-price'>已评价: 12/23人</view>
+                <view class='btn-ghost' wx:if="showCheck">查看评价</view>
+                <view class='btn-ghost' wx:else>评价</view>
+              </view>
+            </view>
+          </view>
+
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" class="scoll-h">
+        <view class='tab-content'>
+          <view class='course-list-item' wx:for="{{ognCourseList}}" wx:key="index" bindtap='goCourseDetailPage' data-item="{{item}}">
+            <view class='course-avatar-wrap'>
+              <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
+            </view>
+            <view class='course-info'>
+              <view class='course-org-name'>{{item.courseName}}</view>
+              <view class='course-simple-info'>
+                <view class='course-name'>{{item.courseIntroduce}}</view>
+              </view>
+              <view class='course-bottom-info'>
+                <view class='course-price'>
+                  <view class='num'>24</view>人上课
+                </view>
+                <view class="{{'status ' + (item.disabled ? 'disabled' : '')}}">已查看</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+</view>
