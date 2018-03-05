@@ -64,7 +64,7 @@ Page({
       success: function (res) {
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth;
-        var calc = clientHeight - 220; // TODO 这里有点操蛋
+        var calc = clientHeight - 190; // TODO 这里有点操蛋
         self.setData({
           swiperHeight: calc
         });
