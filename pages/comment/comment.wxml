@@ -1,0 +1,33 @@
+<view class="course-info">
+  <view class='course-name'>第一节课</view>
+  <view class='course-desc'>学习内容：听老师讲解历史，并且听音乐</view>
+</view>
+
+<scroll-view scroll-x="{{true}}" style="width: 100%" class='student-selector'>
+  <view class='child-item' wx:for="{{childList}}" wx:key="{{index}}">
+    <image class='child-avatar' src="{{item.avatar}}"></image>
+    <view class='child-name'>{{item.name || '琪琪'}}</view>
+    <view class='icon-active iconfont icon-right1'></view>
+  </view>
+</scroll-view>
+
+<view class='student-info'>
+  <view class='avatar-wrap'>
+    <image class='avatar' src="{{selectedChild.avatar || '../../asset/img/avatar-man.png'}}"></image>
+  </view>
+  <view class='name'>{{selectedChild.childNickName}}</view>
+
+  <view class='title'>
+    <view class='title-text'>今日表现</view>
+  </view>
+
+  <tag-list otherstyle="border:none; padding: 0 20px 20px 0" tags="{{tags}}"></tag-list>
+
+  <view class='content-wrap'>
+    宝贝表现很积极，虽然不懂，但是很好学
+  </view>
+</view>
+
+<view class='btn-wrap'>
+  <view class='btn-primary ripple'>提交评价</view>
+</view>

@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/comment/comment",
+    "pages/course/couseDetail",
     "pages/child/childDetail",
     "pages/userCenter/userCenter",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/course/couseDetail",
     "pages/login/login",
     "pages/setting/setting"
   ],
@@ -46,7 +47,7 @@
       },
       {
         "text": "首页",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/comment/comment",
         "iconPath": "asset/img/tabIcon-org.png",
         "selectedIconPath": "asset/img/tabIcon-org-active.png"
       }

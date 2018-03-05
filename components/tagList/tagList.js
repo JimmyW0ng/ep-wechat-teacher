@@ -8,7 +8,7 @@ Component({
       type: Array,
       value: [],
     },
-    style: {
+    otherstyle: {
       type: String,
       value: ''
     }

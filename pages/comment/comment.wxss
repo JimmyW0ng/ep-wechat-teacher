@@ -1,0 +1,120 @@
+/* pages/comment/comment.wxss */
+
+.course-info {
+  padding: 20px;
+}
+
+.course-name {
+  font-size: 16px;
+  color: #1e293c;
+  line-height: 16px;
+  margin-bottom: 15px;
+}
+
+.course-desc {
+  font-size: 14px;
+  color: #7d8794;
+  line-height: 14px;
+}
+
+.student-selector {
+  padding: 15px 0;
+  border-top: 1px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
+  height: 100px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.child-item {
+  display: inline-block;
+  margin: 0 15px;
+  text-align: center;
+  position: relative;
+}
+
+.child-item .icon-active {
+  background-image: linear-gradient(90deg, #5ee495 0%, #2ad5f3 100%);
+  box-shadow: 0 1px 5px 0 rgba(164, 175, 191, 0.30);
+  color: #fff;
+  font-size: 12px;
+  border-radius: 15px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  top: 25px;
+  right: -5px;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+}
+
+.child-item .child-avatar {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  margin-bottom: 10px;
+}
+
+.child-item  .child-name {
+  font-size: 14px;
+  color: #1e293c;
+  line-height: 16px;
+  /* display: inline-block; */
+}
+
+.student-info {
+  padding: 20px;
+}
+
+.student-info .avatar-wrap {
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.student-info  .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  display: inline-block;
+}
+
+.student-info .name {
+  font-size: 20px;
+  color: #1e293c;
+  line-height: 20px;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 14px;
+  color: #7d8794;
+  line-height: 14px;
+  border-top: 1px solid #e9e9e9;
+  margin-top: 25px;
+}
+
+.title .title-text {
+  display: inline-block;
+  background: #fff;
+  padding: 10px 20px;
+  transform: translateY(-50%);
+}
+
+.content-wrap {
+  background: #f9f9f9;
+  border: 1px solid #e9e9e9;
+  border-radius: 4px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #1e293c;
+}
+
+.btn-wrap {
+  padding: 0 20px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}

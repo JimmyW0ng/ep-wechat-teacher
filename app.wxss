@@ -87,3 +87,27 @@ page {
   -webkit-line-clamp: 2;
   -webkit-box-orient:vertical;
 }
+
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  border-bottom: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.tab-selector {
+  font-size: 14px;
+  color: #1e293c;
+  height: 50px;
+  line-height: 50px;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.tab-selector.active {
+  color: #5ee495;
+  border-bottom: 2px solid #5ee495;
+}
