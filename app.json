@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/child/childDetail",
     "pages/userCenter/userCenter",
     "pages/index/index",
     "pages/logs/logs",
     "pages/course/couseDetail",
-    "pages/child/childDetail",
     "pages/login/login",
     "pages/setting/setting"
   ],

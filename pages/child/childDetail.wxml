@@ -1,2 +1,28 @@
-<!--pages/child/childDetail.wxml-->
-<text>pages/child/childDetail.wxml</text>
+<tag-list tags="{{tags}}"></tag-list>
+
+<view class='userCenter-footer'>
+  <view class='footer-title'>评价（{{totalElements}}）</view>
+  <view class='comment-list' wx:if="{{commentList.length}}">
+    <view class='comment-item' bindtap='goTeacherComment' data-orderid="{{item.orderId}}" wx:for="{{commentList}}" wx:key="{{index}}">
+      <view class='teacher-basic'>
+        <view class='left'>
+          <image class="teacher-avatar" src="{{item.avatar}}" mode="scaleToFill"></image>
+          <view class='teacher-info'>
+            <view class='teacher-title'>{{item.nickName}}老师</view>
+            <view class='teacher-name'>{{item.ognName}}</view>
+          </view>
+        </view>
+        <view class='comment-date'>{{item.commentTimeFormat}}</view>
+      </view>
+      <view class='teacher-introduce'>{{item.content}}</view>
+    </view>
+  </view>
+
+  <view class='footer-empty' wx:else>
+    <view class='img-empty'>
+      <image class='org-cover' src="../../asset/img/comment_empty.png" mode="scaleToFill"></image>
+    </view>
+    <view class='text-empty'>暂无评价</view>
+  </view>
+
+</view>
