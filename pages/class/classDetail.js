@@ -78,6 +78,13 @@ Page({
     });
   },
 
+  doCheckComment(e) {
+    let classCatalogId = e.currentTarget.dataset.classcatelogid
+    wx.navigateTo({
+      url: `/pages/comment/comment?classCatalogId=${classCatalogId}`,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -96,8 +103,6 @@ Page({
       }
     });
 
-    self.getClassCatalog(options.classId)
-    self.getClassChild(options.classId)
   },
 
   getClassCatalog(classId) {
@@ -138,7 +143,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let classId = this.data.classId
+    this.getClassCatalog(classId)
+    this.getClassChild(classId)
   },
 
   /**

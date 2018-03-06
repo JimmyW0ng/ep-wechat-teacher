@@ -11,18 +11,15 @@
           <view class='course-info'>
             <view class='course-top'>
               <view class='course-org-name'>{{item.courseName}}</view>
-              <view class='course-date'>{{item.date}}</view>
+              <view class='course-date'>{{item.startTimeFormat || '2013-4-31'}}</view>
             </view>
-            <view class='course-simple-info'>
-              <view class='course-name'>
-                <view class='basic'>{{item.courseIntroduce}}</view>
-                <view class='course-hour'>1/24课时</view>
-              </view>
-            </view>
+            
+            <view class='course-desc' wx:if="{{item.catalogDesc}}">学习内容：{{item.catalogDesc}}</view>
+
             <view class='course-bottom-info'>
-              <view class='course-price'>已评价: 12/23人</view>
-              <view class='btn-ghost' wx:if="showCheck">查看评价</view>
-              <view class='btn-ghost' wx:else>评价</view>
+              <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
+              <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.viewCommentFlag}}">查看评价</view>
+              <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.waitCommentFlag}}">评价</view>
             </view>
           </view>
         </view>
@@ -39,7 +36,7 @@
             <image class='student-avatar' src="{{item.avatar || '../../asset/img/avatar-woman.png'}}"></image>
             <view class='student-name'>{{item.childNickName}}</view>
           </view>
-          <view class='student-count'>{{item.count || 0}}条评价</view>
+          <view class='student-count'>{{item.scheduleCommentNum || 0}}条评价</view>
         </view>
       </view>
     </scroll-view>

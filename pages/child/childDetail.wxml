@@ -4,24 +4,19 @@
 
   <view class='userCenter-header-bottom'>
       <view class='child-school' wx:if="{{childInfo.childNickName}}">{{childInfo.childNickName}}</view>
+      <view class='child-grade' wx:if="{{childInfo.childNickName}}">{{childInfo.childNickName}}</view>
       <view class='child-sign text-ellipsis' wx:if="{{childInfo.sign}}">{{childInfo.sign}}</view>
     </view>
 </view>
 
-<tag-list tags="{{tags}}"></tag-list> 
+<tag-list tags="{{childInfo.tags}}"></tag-list> 
 
 <view class='userCenter-footer'>
-  <view class='footer-title'>评价（{{totalElements}}）</view>
-  <view class='comment-list' wx:if="{{commentList.length}}">
-    <view class='comment-item' bindtap='goTeacherComment' data-orderid="{{item.orderId}}" wx:for="{{commentList}}" wx:key="{{index}}">
+  <view class='footer-title'>评价（{{childInfo.comments.length}}）</view>
+  <view class='comment-list' wx:if="{{childInfo.comments.length}}">
+    <view class='comment-item' bindtap='goTeacherComment' data-orderid="{{item.orderId}}" wx:for="{{childInfo.comments}}" wx:key="{{index}}">
       <view class='teacher-basic'>
-        <view class='left'>
-          <image class="teacher-avatar" src="{{item.avatar}}" mode="scaleToFill"></image>
-          <view class='teacher-info'>
-            <view class='teacher-title'>{{item.nickName}}老师</view>
-            <view class='teacher-name'>{{item.ognName}}</view>
-          </view>
-        </view>
+        <view class='teacher-title'>{{item.classCatalogTitle}}</view>
         <view class='comment-date'>{{item.commentTimeFormat}}</view>
       </view>
       <view class='teacher-introduce'>{{item.content}}</view>
@@ -34,5 +29,4 @@
     </view>
     <view class='text-empty'>暂无评价</view>
   </view>
-
 </view>

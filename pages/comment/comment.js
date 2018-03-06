@@ -27,7 +27,6 @@ Page({
     
     },
     classCatalogId: '',
-    tagIds: [],
     comment: '',
   },
 
@@ -56,25 +55,42 @@ Page({
     })
   },
 
+  selectTag(e){
+    let tagId = e.currentTarget.dataset.tagid
+    this.data.courseTagList.map((item, index) => {
+      if(item.tagId == tagId){
+        item.isActive = !item.isActive
+      }
+    })
+
+    this.setData({
+      courseTagList: this.data.courseTagList
+    })
+  },
+
+  changeComment(e){
+    this.setData({
+      comment: e.detail.value
+    })
+  },
+
   doComment(){
     const self = this
     let classCatalogId = self.data.classCatalogId || ''
-    let childId = self.data.selectedChild.id || ''
-    let tagIds = self.data.tagIds || []
+    let childId = self.data.selectedChild.childId || ''
+    let tagIds = []
+    
+    self.data.courseTagList.map((item, index) => {
+      if(item.isActive){
+        tagIds.push(item.tagId)
+      }
+    })
     let comment = self.data.comment || ''
 
-    if(!tagIds.length){
+    if (!tagIds.length && !comment){
       wx.showToast({
         icon: 'none',
-        title: '请选择标签',
-      })
-      return
-    }
-
-    if (!comment){
-      wx.showToast({
-        icon: 'none',
-        title: '请填写评价',
+        title: '请选择标签或填写评价',
       })
       return
     }
@@ -85,12 +101,16 @@ Page({
       tagIds,
       comment
     }, res => {
-      debugger
-
+      wx.showToast({
+        title: '评价成功',
+      })
+      self.data.courseTagList.map((item, index) => {
+        item.isActive = false
+      })
       // TODO refresh?
       self.setData({
-        selectedTags: [],
-        comment: ''
+        comment: '',
+        courseTagList: self.data.courseTagList
       })
     })
   },

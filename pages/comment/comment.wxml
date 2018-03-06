@@ -23,12 +23,12 @@
 
   <view wx:if="{{selectedChild.waitComment}}">
     <view class='tag-list-select' style="border:none; padding: 0 20px 20px 0" wx:if="{{courseTagList.length}}">
-      <view class="tag" wx:for="{{courseTagList}}" wx:key="{{index}}">
+      <view class="{{'tag ' + (item.isActive ? 'active': '')}}" data-tagid="{{item.tagId}}" wx:for="{{courseTagList}}" bindtap='selectTag' wx:key="{{index}}">
         {{item.tagName}}
       </view>
     </view>
 
-    <textarea maxlength='500' placeholder='请输入评价' class='content-textarea'></textarea>
+    <textarea bindinput="changeComment" value="{{comment}}" maxlength='300' placeholder='请输入评价' class='content-textarea'></textarea>
 
     <view class='btn-wrap' wx:if="{{selectedChild.waitComment}}">
       <view class='btn-primary ripple' bindtap='doComment'>提交评价</view>
@@ -41,5 +41,4 @@
       {{selectedChild.comment || ''}}
     </view>
   </view>
-
 </view>

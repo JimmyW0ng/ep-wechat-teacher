@@ -12,7 +12,7 @@
 
 <view class='body'>
   <view class='tab-header' style="display: flex; flex-direction:row;">
-    <view class="tab-selector {{selectedTab == 0 && 'active'}}" data-tab="0" bindtap='selectTab'>今日课程</view>
+    <view class="tab-selector {{selectedTab == 0 && 'active'}}" data-tab="0" bindtap='selectTab'>今日课时</view>
     <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>全部课程</view>
   </view>
 
@@ -20,7 +20,7 @@
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h">
         <view class='tab-content'>
-          <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}" bindtap='goClassDetail' data-id="{{item.id}}">
+          <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}">
             <view class='course-avatar-wrap'>
               <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
             </view>
@@ -37,7 +37,7 @@
 
                 <view class='btn-wrap'>
                   <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.viewCommentFlag}}" catchtap='doCheckComment'>查看评价</view>
-                  <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.waitCommentFlag}}" catchtap='doComment'>评价</view>
+                  <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.waitCommentFlag}}" catchtap='doCheckComment'>评价</view>
                 </view>
               </view>
             </view>

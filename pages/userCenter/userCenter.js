@@ -51,10 +51,6 @@ Page({
         });
       }
     });
-
-    self.getAccountInfo()
-    self.getTodayClass()
-    self.getAllClass()
   },
 
   getAccountInfo() {
@@ -127,7 +123,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var self = this;
+    self.getAccountInfo()
+    self.getTodayClass()
+    self.getAllClass()
   },
 
   /**

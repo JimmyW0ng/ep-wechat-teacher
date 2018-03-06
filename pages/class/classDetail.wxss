@@ -1,5 +1,6 @@
 /* pages/userCenter/userCenter.wxss */
-swiper-item{
+
+swiper-item {
   overflow-y: scroll;
 }
 
@@ -34,18 +35,19 @@ swiper-item{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
+
 .course-org-name {
-font-size: 16px;
-color: #1E293C;
-line-height: 16px;
-margin-bottom: 15px;
+  font-size: 16px;
+  color: #1e293c;
+  line-height: 16px;
 }
 
 .course-date {
   font-size: 12px;
-color: #A4AFBF;
-line-height: 12px;
+  color: #a4afbf;
+  line-height: 12px;
 }
 
 .course-name {
@@ -54,18 +56,12 @@ line-height: 12px;
   line-height: 12px;
 }
 
-.course-name .basic {
-  display: inline-block;
-}
-.course-hour {
-  display: inline-block;
-  margin-left: 15px;
+.course-desc {
+  font-size: 14px;
+  color: #7d8794;
+  line-height: 14px;
 }
 
-.course-simple-info {
-   display: flex;
-   align-items: center;
-}
 .course-bottom-info {
   display: flex;
   justify-content: space-between;
@@ -93,18 +89,16 @@ line-height: 12px;
 
 .status {
   font-size: 14px;
-color: #5EE495;
-line-height: 14px;
+  color: #5ee495;
+  line-height: 14px;
 }
 
 .status.disabled {
-  color: #A4AFBF;
+  color: #a4afbf;
 }
 
 .course-detail-footer {
-  
 }
-
 
 .student-list-item {
   display: flex;
@@ -126,14 +120,15 @@ line-height: 14px;
   height: 40px;
   border-radius: 40px;
 }
+
 .student-name {
   font-size: 16px;
-color: #1E293C;
-line-height: 16px;
+  color: #1e293c;
+  line-height: 16px;
 }
-.student-count {
 
-font-size: 14px;
-color: #7D8794;
-line-height: 14px;
+.student-count {
+  font-size: 14px;
+  color: #7d8794;
+  line-height: 14px;
 }

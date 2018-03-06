@@ -100,7 +100,7 @@ Page({
 
         // TODO 跳转到首页去
         wx.switchTab({
-          url: '/pages/userCenter/UserCenterPage',
+          url: '/pages/userCenter/UserCenter',
         })
       })
     } else {

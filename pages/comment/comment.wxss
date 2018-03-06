@@ -66,6 +66,7 @@
 
 .student-info {
   padding: 20px;
+  padding-bottom: 100px;
 }
 
 .student-info .avatar-wrap {
@@ -145,6 +146,7 @@
   font-size: 14px;
   margin-right: 10px;
   margin-bottom: 10px;
+  transition: all 0.2s ease-in-out;
 }
 
 .tag-list-select .tag.active {

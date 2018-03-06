@@ -24,6 +24,8 @@
   width: 80px;
   height: 80px;
   border-radius: 80px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 15px #aaa;
 }
 
 .userCenter-header-bottom {
@@ -32,16 +34,23 @@
 
 .child-school {
   height: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 20px;
   color: #1e293c;
   line-height: 20px;
+}
+
+.child-grade {
+    font-size: 14px;
+  color: #7D8794;
+  line-height: 14px;
 }
 
 .child-sign {
   font-size: 14px;
   color: #1e293c;
   line-height: 14px;
+  margin-top: 15px;
 }
 
 .userCenter-footer {
@@ -59,10 +68,10 @@
   align-items: center;
 }
 
-.teacher-basic .left {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.teacher-title {
+  font-size: 16px;
+  color: #1e293c;
+  line-height: 16px;
 }
 
 .teacher-basic .comment-date {

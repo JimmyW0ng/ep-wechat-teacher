@@ -104,14 +104,13 @@ swiper-item {
   line-height: 14px;
 }
 
-.btn-wrap .btn-ghost {
-  margin-left: 5px;
-}
-
 .course-price .num {
   font-size: 18px;
   display: inline-block;
-  padding-top: 10px;
+}
+
+.btn-wrap .btn-ghost {
+  margin-left: 5px;
 }
 
 .course-learn-num {

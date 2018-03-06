@@ -12,13 +12,9 @@ Page({
       childNickName: '',
       id: '',
       sign: '',
+      comments: [],
+      tags: []
     },
-  
-    totalElements: 0,
-    tags: [{
-      tagName: 'fuck',
-      num: 2
-    }]
   },
 
   /**
