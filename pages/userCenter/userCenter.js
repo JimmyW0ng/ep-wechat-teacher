@@ -1,42 +1,26 @@
 // pages/userCenter/userCenter.js
+const AXIOS = require('../../utils/axios')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    accountInfo: {
+      avatar: '',
+      id: '',
+      nickName: '',
+      ognName: '',
+    },
+
+    todayClass: [],
+    dataSet: [],
+    page: 0,
+    size: 5,
+    last: false,
+
     selectedTab: 0,
-    swiperHeight: 200,
-    ognCourseList: [{
-      mainPicUrl: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-      courseName: '非常非常好的课程',
-      label: 'jacksom',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      totalParticipate: 300
-    }, {
-      mainPicUrl: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-      courseName: 'fuck',
-      label: 'jacksom',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      totalParticipate: 300
-    }, {
-      mainPicUrl: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-      courseName: 'fuck',
-      label: 'jacksom',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      totalParticipate: 300,
-      disabled: true
-    }, {
-      mainPicUrl: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-      courseName: 'fuck',
-      label: 'jacksom',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      totalParticipate: 300
-    }]
+    swiperHeight: 200
   },
 
   selectTab(e) {
@@ -62,14 +46,73 @@ Page({
     //  高度自适应
     wx.getSystemInfo({
       success: function (res) {
-        var clientHeight = res.windowHeight,
-          clientWidth = res.windowWidth;
-        var calc = clientHeight - 190; // TODO 这里有点操蛋
         self.setData({
-          swiperHeight: calc
+          swiperHeight: res.windowHeight - 98
         });
       }
     });
+
+    self.getAccountInfo()
+    self.getTodayClass()
+    self.getAllClass()
+  },
+
+  getAccountInfo() {
+    const self = this
+    AXIOS.POST('auth/organ/account/info', {}, res => {
+      self.setData({
+          accountInfo: res.result || {}
+      })
+    })
+  },
+
+  getTodayClass() {
+    const self = this
+    AXIOS.POST('auth/organ/account/class/today', {}, res => {
+      self.setData({
+        todayClass: res.result || []
+      })
+    })
+  },
+
+  getAllClass(loadMore) {
+    const self = this
+    let page = loadMore ? self.data.page + 1 : 0
+    let size = self.data.size || 10
+    AXIOS.POST('auth/organ/account/class/all', {
+      page,
+      size,
+    }, (res) => {
+      const result = res.result || {}
+      let content = result.content || []
+      if (page > 0) {
+        content = self.data.dataSet.concat(content)
+      }
+      self.setData({
+        dataSet: content,
+        page: result.number || 0,
+        last: result.last
+      })
+    })
+  },
+
+  goClassDetail(e){
+    let classId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/class/classDetail?classId=' + classId,
+    })
+  },
+
+  doCheckComment() {
+    wx.navigateTo({
+      url: '',
+    })
+  },
+
+  doComment() {
+    wx.navigateTo({
+      url: '',
+    })
   },
 
   /**

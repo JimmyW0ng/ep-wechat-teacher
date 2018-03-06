@@ -7,7 +7,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h">
       <view class='tab-content'>
-        <view class='course-list-item' wx:for="{{ognCourseList}}" wx:key="index" bindtap='goCourseDetailPage'>
+        <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index" bindtap='goCourseDetailPage'>
           <view class='course-info'>
             <view class='course-top'>
               <view class='course-org-name'>{{item.courseName}}</view>
@@ -34,12 +34,12 @@
   <swiper-item>
     <scroll-view scroll-y="{{true}}" class="scoll-h">
       <view class='tab-content'>
-        <view class='student-list-item' wx:for="{{studentList}}" wx:key="index" bindtap='goCourseDetailPage'>
+        <view class='student-list-item' wx:for="{{childList}}" wx:key="index" bindtap='goCourseDetailPage'>
           <view class='student-left'>
             <image class='student-avatar' src="{{item.avatar || '../../asset/img/avatar-woman.png'}}"></image>
-            <view class='student-name'>{{item.name}}</view>
+            <view class='student-name'>{{item.childNickName}}</view>
           </view>
-          <view class='student-count'>{{item.count}}条评价</view>
+          <view class='student-count'>{{item.count || 0}}条评价</view>
         </view>
       </view>
     </scroll-view>

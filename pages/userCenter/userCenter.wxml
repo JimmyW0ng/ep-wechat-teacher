@@ -1,11 +1,10 @@
 <!--pages/userCenter/userCenter.wxml-->
 <view class='header'>
-  <image class='avatar' src='../../asset/img/avatar-woman.png' mode=''></image>
-
+  <image class='avatar' src='{{accountInfo.avatar || "../../asset/img/avatar-woman.png"}}' mode=''></image>
   <view class='info'>
-    <view class='name'>fuck</view>
-    <view class='ogn'>haohao机构</view>
-    <view class='id'>认证编号：1231</view>
+    <view class='name'>{{accountInfo.nickName}}</view>
+    <view class='ogn'>{{accountInfo.ognName}}</view>
+    <view class='id'>认证编号：{{accountInfo.id}}</view>
   </view>
 
   <view class='icon-setting'>设置</view>
@@ -17,11 +16,11 @@
     <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>全部课程</view>
   </view>
 
-  <swiper style="height:{{swiperHeight}}px; padding-bottom: 50px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
+  <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h">
         <view class='tab-content'>
-          <view class='course-list-item' wx:for="{{ognCourseList}}" wx:key="index" bindtap='goCourseDetailPage' data-item="{{item}}">
+          <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}" bindtap='goClassDetail' data-id="{{item.id}}">
             <view class='course-avatar-wrap'>
               <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
             </view>
@@ -29,14 +28,17 @@
               <view class='course-org-name'>{{item.courseName}}</view>
               <view class='course-simple-info'>
                 <view class='course-name'>
-                  <view class='basic'>{{item.courseIntroduce}}</view>
-                  <view class='course-hour'>1/24课时</view>
+                  <view class='basic'>{{item.className}}</view>
+                  <view class='course-hour'>{{item.catalogIndex}}/{{item.courseNum}}课时</view>
                 </view>
               </view>
               <view class='course-bottom-info'>
-                <view class='course-price'>已评价: 12/23人</view>
-                <view class='btn-ghost' wx:if="showCheck">查看评价</view>
-                <view class='btn-ghost' wx:else>评价</view>
+                <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
+
+                <view class='btn-wrap'>
+                  <view class='btn-ghost' wx:if="{{item.viewCommentFlag}}" bindtap='doCheckComment'>查看评价</view>
+                  <view class='btn-ghost' wx:if="{{item.waitCommentFlag}}" bindtap='doComment'>评价</view>
+                </view>
               </view>
             </view>
           </view>
@@ -48,20 +50,20 @@
     <swiper-item>
       <scroll-view scroll-y="{{true}}" class="scoll-h">
         <view class='tab-content'>
-          <view class='course-list-item' wx:for="{{ognCourseList}}" wx:key="index" bindtap='goCourseDetailPage' data-item="{{item}}">
+          <view class='course-list-item' bindtap='goClassDetail' wx:for="{{dataSet}}" wx:key="{{index}}" data-id="{{item.id}}">
             <view class='course-avatar-wrap'>
               <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
             </view>
             <view class='course-info'>
               <view class='course-org-name'>{{item.courseName}}</view>
               <view class='course-simple-info'>
-                <view class='course-name'>{{item.courseIntroduce}}</view>
+                <view class='course-name'>{{item.className}}</view>
               </view>
               <view class='course-bottom-info'>
                 <view class='course-price'>
-                  <view class='num'>24</view>人上课
+                  <view class='num'>{{item.enteredNum}}</view>人上课
                 </view>
-                <view class="{{'status ' + (item.disabled ? 'disabled' : '')}}">已查看</view>
+                <view class="{{'course-status ' + (item.status == 'end' ? 'disabled' : '')}}">{{item.statusText}}</view>
               </view>
             </view>
           </view>

@@ -1,4 +1,6 @@
 // pages/course/couseDetail.js
+const AXIOS = require('../../utils/axios')
+
 Page({
 
   /**
@@ -7,6 +9,9 @@ Page({
   data: {
     selectedTab: 0,
     swiperHeight: 200,
+    catalogList: [],
+    childList: [],
+
     ognCourseList: [{
       courseName: '第一节课',
       label: 'jacksom',
@@ -89,6 +94,27 @@ Page({
         });
       }
     });
+
+    self.getClassCatalog(options.classId)
+    self.getClassChild(options.classId)
+  },
+
+  getClassCatalog(classId) {
+    const self = this
+    AXIOS.POST('auth/organ/account/class/catalog/all', { classId }, res => {
+      self.setData({
+        catalogList: res.result || []
+      })
+    })
+  },
+
+  getClassChild(classId) {
+    const self = this
+    AXIOS.POST('auth/organ/account/class/child/all', { classId }, res => {
+      self.setData({
+        childList: res.result || []
+      })
+    })
   },
 
   /**

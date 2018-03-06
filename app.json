@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/comment/comment",
-    "pages/course/couseDetail",
-    "pages/child/childDetail",
     "pages/userCenter/userCenter",
+    "pages/comment/comment",
+    "pages/child/childDetail",
     "pages/index/index",
     "pages/logs/logs",
     "pages/login/login",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/class/classDetail"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -36,12 +36,6 @@
       {
         "text": "登陆",
         "pagePath": "pages/login/login",
-        "iconPath": "asset/img/tabIcon-org.png",
-        "selectedIconPath": "asset/img/tabIcon-org-active.png"
-      },
-      {
-        "text": "课程详情",
-        "pagePath": "pages/course/couseDetail",
         "iconPath": "asset/img/tabIcon-org.png",
         "selectedIconPath": "asset/img/tabIcon-org-active.png"
       },
