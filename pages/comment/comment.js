@@ -1,5 +1,6 @@
 // pages/comment/comment.js
 const AXIOS = require('../../utils/axios')
+const _ = require('../../utils/underscore.js')
 
 Page({
 
@@ -13,23 +14,21 @@ Page({
       // {
       //   avatar: '',
       //   childNickName: '',
-      //   id: ''
+      //   id: '',
+      //   tags: '',
+      //   waitComment: '',
       // }
     ],
 
-    childTagAndCommentList: [],
     classCatalog: {},
     courseTagList: [],
 
     selectedChild: {
-      id: 1,
-      avatar: '',
-      childNickName: '哈哈哈哈',
+    
     },
-    tags: [{
-      tagName: 'fuck',
-      num: 2
-    }]
+    classCatalogId: '',
+    tagIds: [],
+    comment: '',
   },
 
   /**
@@ -37,6 +36,7 @@ Page({
    */
   onLoad: function (options) {
     let classCatalogId = options.classCatalogId
+    this.setData({ classCatalogId })
     this.getData(classCatalogId)
   },
 
@@ -46,11 +46,51 @@ Page({
       classCatalogId
     }, res => {
       let result = res.result || {}
+      let childList = result.childList || []
       self.setData({
-        childList: result.childList || [],
-        childTagAndCommentList: result.childTagAndCommentList || [],
+        childList,
+        selectedChild: childList[0] || {},
         classCatalog: result.classCatalog || {},
         courseTagList: result.courseTagList || [],
+      })
+    })
+  },
+
+  doComment(){
+    const self = this
+    let classCatalogId = self.data.classCatalogId || ''
+    let childId = self.data.selectedChild.id || ''
+    let tagIds = self.data.tagIds || []
+    let comment = self.data.comment || ''
+
+    if(!tagIds.length){
+      wx.showToast({
+        icon: 'none',
+        title: '请选择标签',
+      })
+      return
+    }
+
+    if (!comment){
+      wx.showToast({
+        icon: 'none',
+        title: '请填写评价',
+      })
+      return
+    }
+
+    AXIOS.POST('auth/organ/account/class/catalog/comment', {
+      classCatalogId,
+      childId,
+      tagIds,
+      comment
+    }, res => {
+      debugger
+
+      // TODO refresh?
+      self.setData({
+        selectedTags: [],
+        comment: ''
       })
     })
   },

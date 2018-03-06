@@ -109,12 +109,44 @@
   border-radius: 4px;
   padding: 15px;
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 14px;
   color: #1e293c;
 }
 
+.content-textarea {
+  border: 1px solid #e9e9e9;
+  border-radius: 4px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #1e293c;
+  width: 100%;
+  height: 120px;
+}
+
 .btn-wrap {
-  padding: 0 20px;
   margin-top: 30px;
   margin-bottom: 50px;
+}
+
+
+/* components/tagList/tagList.wxss */
+.tag-list-select {
+  padding: 20px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.tag-list-select .tag {
+  padding: 8px 10px;
+  display: inline-block;
+  border: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.tag-list-select .tag.active {
+  background: rgba(94, 228, 149, 0.2);
 }

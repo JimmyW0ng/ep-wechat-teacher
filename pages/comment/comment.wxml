@@ -7,7 +7,7 @@
   <view class='child-item' wx:for="{{childList}}" wx:key="{{index}}">
     <image class='child-avatar' src="{{item.avatar}}"></image>
     <view class='child-name'>{{item.childNickName}}</view>
-    <view class='icon-active iconfont icon-right1'></view>
+    <view wx:if="{{!item.waitComment}}" class='icon-active iconfont icon-right1'></view>
   </view>
 </scroll-view>
 
@@ -21,13 +21,25 @@
     <view class='title-text'>今日表现</view>
   </view>
 
-  <tag-list otherstyle="border:none; padding: 0 20px 20px 0" tags="{{tags}}"></tag-list>
+  <view wx:if="{{selectedChild.waitComment}}">
+    <view class='tag-list-select' style="border:none; padding: 0 20px 20px 0" wx:if="{{courseTagList.length}}">
+      <view class="tag" wx:for="{{courseTagList}}" wx:key="{{index}}">
+        {{item.tagName}}
+      </view>
+    </view>
 
-  <view class='content-wrap'>
-    宝贝表现很积极，虽然不懂，但是很好学
+    <textarea maxlength='500' placeholder='请输入评价' class='content-textarea'></textarea>
+
+    <view class='btn-wrap' wx:if="{{selectedChild.waitComment}}">
+      <view class='btn-primary ripple' bindtap='doComment'>提交评价</view>
+    </view>
   </view>
-</view>
 
-<view class='btn-wrap'>
-  <view class='btn-primary ripple'>提交评价</view>
+  <view wx:else>
+    <tag-list otherstyle="border:none; padding: 0 20px 20px 0" tags="{{selectedChild.tags}}"></tag-list>
+    <view class='content-wrap' wx:if="{{selectedChild.comment}}">
+      {{selectedChild.comment || ''}}
+    </view>
+  </view>
+
 </view>
