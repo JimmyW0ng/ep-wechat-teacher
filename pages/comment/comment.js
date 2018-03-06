@@ -1,4 +1,6 @@
 // pages/comment/comment.js
+const AXIOS = require('../../utils/axios')
+
 Page({
 
   /**
@@ -7,29 +9,17 @@ Page({
   data: {
     totalElements: 0,
 
-    childList: [{
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-    },],
+    childList: [
+      // {
+      //   avatar: '',
+      //   childNickName: '',
+      //   id: ''
+      // }
+    ],
+
+    childTagAndCommentList: [],
+    classCatalog: {},
+    courseTagList: [],
 
     selectedChild: {
       id: 1,
@@ -46,7 +36,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let classCatalogId = options.classCatalogId
+    this.getData(classCatalogId)
+  },
 
+  getData(classCatalogId) {
+    const self = this
+    AXIOS.POST('auth/organ/account/class/catalog/init', {
+      classCatalogId
+    }, res => {
+      let result = res.result || {}
+      self.setData({
+        childList: result.childList || [],
+        childTagAndCommentList: result.childTagAndCommentList || [],
+        classCatalog: result.classCatalog || {},
+        courseTagList: result.courseTagList || [],
+      })
+    })
   },
 
   /**

@@ -36,8 +36,8 @@
                 <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
 
                 <view class='btn-wrap'>
-                  <view class='btn-ghost' wx:if="{{item.viewCommentFlag}}" bindtap='doCheckComment'>查看评价</view>
-                  <view class='btn-ghost' wx:if="{{item.waitCommentFlag}}" bindtap='doComment'>评价</view>
+                  <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.viewCommentFlag}}" catchtap='doCheckComment'>查看评价</view>
+                  <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.waitCommentFlag}}" catchtap='doComment'>评价</view>
                 </view>
               </view>
             </view>

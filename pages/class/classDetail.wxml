@@ -3,7 +3,7 @@
   <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>学员</view>
 </view>
 
-<swiper style="height:{{swiperHeight}}px; padding-bottom: 50px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
+<swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h">
       <view class='tab-content'>
@@ -34,7 +34,7 @@
   <swiper-item>
     <scroll-view scroll-y="{{true}}" class="scoll-h">
       <view class='tab-content'>
-        <view class='student-list-item' wx:for="{{childList}}" wx:key="index" bindtap='goCourseDetailPage'>
+        <view class='student-list-item' wx:for="{{childList}}" wx:key="index" bindtap='goChildDetail' data-id="{{item.id}}">
           <view class='student-left'>
             <image class='student-avatar' src="{{item.avatar || '../../asset/img/avatar-woman.png'}}"></image>
             <view class='student-name'>{{item.childNickName}}</view>

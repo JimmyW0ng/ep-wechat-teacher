@@ -1,12 +1,19 @@
 // pages/child/childDetail.js
+const AXIOS = require('../../utils/axios')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    childNickName: '哈哈哈哈',
-    sign: '嘿嘿嘿拉风已达UFO阿嘿嘿嘿拉风已达UFO阿父爱嘿嘿嘿拉风已达UFO阿父爱嘿嘿嘿拉风已达UFO阿父爱父爱',
+    childInfo: {
+      avatar: '',
+      childNickName: '',
+      id: '',
+      sign: '',
+    },
+  
     totalElements: 0,
     tags: [{
       tagName: 'fuck',
@@ -18,7 +25,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getDetail(options.childId, options.classId)
+  },
+  
+  getDetail(childId, classId){
+    const self = this
+    AXIOS.POST('auth/organ/account/class/child/abstract', { childId, classId }, res => {
+      self.setData({
+        childInfo: res.result || {}
+      })
+    })
   },
 
   /**

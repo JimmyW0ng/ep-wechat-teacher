@@ -103,9 +103,10 @@ Page({
     })
   },
 
-  doCheckComment() {
+  doCheckComment(e) {
+    let classCatalogId = e.currentTarget.dataset.classcatelogid
     wx.navigateTo({
-      url: '',
+      url: `/pages/comment/comment?classCatalogId=${classCatalogId}`,
     })
   },
 

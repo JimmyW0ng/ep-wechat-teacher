@@ -1,12 +1,12 @@
 <view class="course-info">
-  <view class='course-name'>第一节课</view>
-  <view class='course-desc'>学习内容：听老师讲解历史，并且听音乐</view>
+  <view class='course-name'>{{classCatalog.catalogTitle}}</view>
+  <view class='course-desc' wx:if="{{classCatalog.catalogDesc}}">学习内容：{{classCatalog.catalogDesc}}</view>
 </view>
 
 <scroll-view scroll-x="{{true}}" style="width: 100%" class='student-selector'>
   <view class='child-item' wx:for="{{childList}}" wx:key="{{index}}">
     <image class='child-avatar' src="{{item.avatar}}"></image>
-    <view class='child-name'>{{item.name || '琪琪'}}</view>
+    <view class='child-name'>{{item.childNickName}}</view>
     <view class='icon-active iconfont icon-right1'></view>
   </view>
 </scroll-view>

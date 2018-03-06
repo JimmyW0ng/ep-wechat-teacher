@@ -90,7 +90,8 @@ Page({
           clientWidth = res.windowWidth;
         var calc = clientHeight - 50; // TODO 这里有点操蛋
         self.setData({
-          swiperHeight: calc
+          swiperHeight: calc,
+          classId: options.classId
         });
       }
     });
@@ -114,6 +115,15 @@ Page({
       self.setData({
         childList: res.result || []
       })
+    })
+  },
+
+  goChildDetail(e){
+    console.log('cu')
+    let childId = e.currentTarget.dataset.id
+    let classId = this.data.classId
+    wx.navigateTo({
+      url: `/pages/child/childDetail?childId=${childId}&classId=${classId}` 
     })
   },
 

@@ -28,20 +28,8 @@
         "selectedIconPath": "asset/img/tabIcon-org-active.png"
       },
       {
-        "text": "孩子详情",
-        "pagePath": "pages/child/childDetail",
-        "iconPath": "asset/img/tabIcon-org.png",
-        "selectedIconPath": "asset/img/tabIcon-org-active.png"
-      },
-      {
         "text": "登陆",
         "pagePath": "pages/login/login",
-        "iconPath": "asset/img/tabIcon-org.png",
-        "selectedIconPath": "asset/img/tabIcon-org-active.png"
-      },
-      {
-        "text": "首页",
-        "pagePath": "pages/comment/comment",
         "iconPath": "asset/img/tabIcon-org.png",
         "selectedIconPath": "asset/img/tabIcon-org-active.png"
       }
