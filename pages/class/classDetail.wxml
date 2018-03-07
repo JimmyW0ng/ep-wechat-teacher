@@ -10,8 +10,8 @@
         <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index" bindtap='goCourseDetailPage'>
           <view class='course-info'>
             <view class='course-top'>
-              <view class='course-org-name'>{{item.courseName}}</view>
-              <view class='course-date'>{{item.startTimeFormat || '2013-4-31'}}</view>
+              <view class='course-org-name'>{{item.catalogTitle}}</view>
+              <view class='course-date'>{{item.startTimeFormat}}</view>
             </view>
             
             <view class='course-desc' wx:if="{{item.catalogDesc}}">学习内容：{{item.catalogDesc}}</view>

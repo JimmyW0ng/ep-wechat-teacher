@@ -102,6 +102,8 @@ swiper-item {
   font-size: 14px;
   color: #1e293c;
   line-height: 14px;
+    display: flex;
+  align-items: center;
 }
 
 .course-price .num {
