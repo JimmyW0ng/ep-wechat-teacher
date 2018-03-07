@@ -7,7 +7,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h">
       <view class='tab-content'>
-        <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index" bindtap='goCourseDetailPage'>
+        <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index">
           <view class='course-info'>
             <view class='course-top'>
               <view class='course-org-name'>{{item.catalogTitle}}</view>

@@ -40,7 +40,7 @@
   line-height: 20px;
 }
 
-.child-grade {
+.child-class {
     font-size: 14px;
   color: #7D8794;
   line-height: 14px;
