@@ -98,9 +98,8 @@ Page({
         USER.setMemberType(result.memberType)
         USER.setToken(result.token)
 
-        // TODO 跳转到首页去
         wx.switchTab({
-          url: '/pages/userCenter/UserCenter',
+          url: '/pages/userCenter/userCenter',
         })
       })
     } else {
