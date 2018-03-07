@@ -24,7 +24,7 @@ Page({
     courseTagList: [],
 
     selectedChild: {
-    
+
     },
     classCatalogId: '',
     comment: '',
@@ -46,6 +46,7 @@ Page({
     }, res => {
       let result = res.result || {}
       let childList = result.childList || []
+
       self.setData({
         childList,
         selectedChild: childList[0] || {},
@@ -55,10 +56,18 @@ Page({
     })
   },
 
-  selectTag(e){
+  selectChild(e) {
+    let index = e.currentTarget.dataset.index
+    let selectedChild = this.data.childList[index]
+    this.setData({
+      selectedChild
+    })
+  },
+
+  selectTag(e) {
     let tagId = e.currentTarget.dataset.tagid
     this.data.courseTagList.map((item, index) => {
-      if(item.tagId == tagId){
+      if (item.tagId == tagId) {
         item.isActive = !item.isActive
       }
     })
@@ -68,26 +77,28 @@ Page({
     })
   },
 
-  changeComment(e){
+  changeComment(e) {
     this.setData({
       comment: e.detail.value
     })
   },
 
-  doComment(){
+  doComment() {
     const self = this
     let classCatalogId = self.data.classCatalogId || ''
     let childId = self.data.selectedChild.childId || ''
     let tagIds = []
-    
+    let tempTags = []
+
     self.data.courseTagList.map((item, index) => {
-      if(item.isActive){
+      if (item.isActive) {
+        tempTags.push(item)
         tagIds.push(item.tagId)
       }
     })
     let comment = self.data.comment || ''
 
-    if (!tagIds.length && !comment){
+    if (!tagIds.length && !comment) {
       wx.showToast({
         icon: 'none',
         title: '请选择标签或填写评价',
@@ -107,10 +118,22 @@ Page({
       self.data.courseTagList.map((item, index) => {
         item.isActive = false
       })
-      // TODO refresh?
+      let childList = self.data.childList
+      let tempChild = {}
+      childList.map((item, index) => {
+        if (item.childId == childId) {
+          item.waitComment = false
+          item.tags = tempTags
+          item.comment = comment || ''
+          tempChild = item
+        }
+      })
+
       self.setData({
+        childList,
         comment: '',
-        courseTagList: self.data.courseTagList
+        courseTagList: self.data.courseTagList,
+        selectedChild: tempChild
       })
     })
   },

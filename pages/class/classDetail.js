@@ -11,56 +11,6 @@ Page({
     swiperHeight: 200,
     catalogList: [],
     childList: [],
-
-    ognCourseList: [{
-      courseName: '第一节课',
-      label: 'jacksom',
-      date: '2017年7月7日 ',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      totalParticipate: 300
-    }, {
-      courseName: 'fuck',
-      label: 'jacksom',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      date: '2017年7月7日 ',
-
-      totalParticipate: 300
-    }, {
-      courseName: 'fuck',
-      label: 'jacksom',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      date: '2017年7月7日 ',
-      totalParticipate: 300,
-      disabled: true
-    }, {
-      courseName: 'fuck',
-      label: 'jacksom',
-      date: '2017年7月7日 ',
-      courseIntroduce: '非常非常好的课程',
-      prizeMin: 21,
-      totalParticipate: 300
-    }],
-
-    studentList: [{
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-      name: 'Cc',
-      count: 6
-    }, {
-      avatar: '',
-      name: '你好好哈',
-      count: 6
-    }, {
-      avatar: '',
-      name: 'jack',
-      count: 61
-    }, {
-      avatar: 'http://res.xiaomaiketang.com/xiaomai/fatherDay_20170607.png',
-      name: 'fuck',
-      count: 336
-    }]
   },
 
   selectTab(e) {
@@ -124,7 +74,6 @@ Page({
   },
 
   goChildDetail(e){
-    console.log('cu')
     let childId = e.currentTarget.dataset.id
     let classId = this.data.classId
     wx.navigateTo({
