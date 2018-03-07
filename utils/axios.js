@@ -2,7 +2,7 @@ const app = getApp();
 const CONFIG = require('./config.js');
 const User = require('./user.js');
 
-const LoginUrl = '/pages/login/LoginPage'
+const LoginUrl = '/pages/login/login'
 const LoadingDuration = 300
 
 function POST(apiPath, param, success, fail, complete) {
@@ -76,14 +76,17 @@ function processRequestError(result) {
   // TODO 优化一下对话框
   if (result.error == "ERROR_ACCESS_NEED_AUTH") {
     wx.showModal({
-      title: '请登陆',
+      title: '提示',
+      content: '请先登陆',
       showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          wx.redirectTo({
+            url: LoginUrl
+          })
+        }
+      }
     })
-    setTimeout(() => {
-      wx.redirectTo({
-        url: LoginUrl
-      })
-    }, 1000)
   } else {
     wx.showModal({
       title: '提示',

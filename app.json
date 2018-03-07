@@ -15,25 +15,5 @@
     "navigationBarTitleText": "首页",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "color": "#1E293C",
-    "selectedColor": "#5EE495",
-    "borderStyle": "black",
-    "backgroundColor": "#f9f9f9",
-    "list": [
-      {
-        "text": "我的",
-        "pagePath": "pages/userCenter/userCenter",
-        "iconPath": "asset/img/tabIcon-org.png",
-        "selectedIconPath": "asset/img/tabIcon-org-active.png"
-      },
-      {
-        "text": "登陆",
-        "pagePath": "pages/login/login",
-        "iconPath": "asset/img/tabIcon-org.png",
-        "selectedIconPath": "asset/img/tabIcon-org-active.png"
-      }
-    ]
-  },
   "debug": true
 }
