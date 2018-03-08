@@ -73,24 +73,24 @@ function request(apiPath, method, param, success, axios) {
 }
 
 function processRequestError(result) {
-  // TODO 优化一下对话框
-  if (result.error == "ERROR_ACCESS_NEED_AUTH") {
+  if (result.errorDescription == "请重新登录") {
     wx.showModal({
       title: '提示',
-      content: '请先登陆',
-      showCancel: false,
+      content: result.errorDescription,
       success: function (res) {
         if (res.confirm) {
           wx.redirectTo({
             url: LoginUrl
           })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
       }
     })
   } else {
     wx.showModal({
       title: '提示',
-      content: result.error + ' : ' + result.errorDescription,
+      content: result.errorDescription,
       showCancel: false,
     })
   }
