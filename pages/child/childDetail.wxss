@@ -34,7 +34,6 @@
 
 .child-school {
   height: 24px;
-  margin-bottom: 5px;
   font-size: 20px;
   color: #1e293c;
   line-height: 20px;
@@ -44,6 +43,7 @@
     font-size: 14px;
   color: #7D8794;
   line-height: 14px;
+  margin-top: 5px;
 }
 
 .child-sign {
