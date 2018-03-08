@@ -2,9 +2,9 @@
 <view class='header'>
   <image class='avatar' src='{{accountInfo.avatar || "../../asset/img/avatar-woman.png"}}' mode=''></image>
   <view class='info'>
-    <view class='name'>{{accountInfo.nickName}}</view>
-    <view class='ogn'>{{accountInfo.ognName}}</view>
-    <view class='id'>认证编号：{{accountInfo.id}}</view>
+    <view class='name' wx:if="{{accountInfo.nickName}}">{{accountInfo.nickName}}</view>
+    <view class='ogn' wx:if="{{accountInfo.ognName}}">{{accountInfo.ognName}}</view>
+    <view class='id' wx:if="{{accountInfo.id}}">认证编号：{{accountInfo.id}}</view>
   </view>
 
   <view class='icon-setting'>设置</view>

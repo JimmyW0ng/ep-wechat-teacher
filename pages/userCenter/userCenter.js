@@ -32,9 +32,10 @@ Page({
   },
 
   changeSwiper(e) {
-    let current = e.detail.current
-    this.setData({
-      selectedTab: current
+    const self = this
+    let tab = e.detail.current
+    self.setData({
+      selectedTab: tab
     });
   },
 
@@ -59,6 +60,8 @@ Page({
       self.setData({
           accountInfo: res.result || {}
       })
+      self.getTodayClass()
+      self.getAllClass()
     })
   },
 
@@ -71,6 +74,7 @@ Page({
     })
   },
 
+  // TODO 全部课程需要分页加载
   getAllClass(loadMore) {
     const self = this
     let page = loadMore ? self.data.page + 1 : 0
@@ -106,12 +110,6 @@ Page({
     })
   },
 
-  doComment() {
-    wx.navigateTo({
-      url: '',
-    })
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -125,8 +123,8 @@ Page({
   onShow: function () {
     var self = this;
     self.getAccountInfo()
-    self.getTodayClass()
-    self.getAllClass()
+    // self.getTodayClass()
+    // self.getAllClass()
   },
 
   /**
