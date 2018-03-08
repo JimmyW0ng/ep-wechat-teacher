@@ -20,7 +20,10 @@ Page({
     last: false,
 
     selectedTab: 0,
-    swiperHeight: 200
+    swiperHeight: 200,
+
+    loadingToday: true,
+    loadingAll: true
   },
 
   selectTab(e) {
@@ -69,6 +72,7 @@ Page({
     const self = this
     AXIOS.POST('auth/organ/account/class/today', {}, res => {
       self.setData({
+        loadingToday: false,
         todayClass: res.result || []
       })
     })
@@ -89,6 +93,7 @@ Page({
         content = self.data.dataSet.concat(content)
       }
       self.setData({
+        loadingAll: false,
         dataSet: content,
         page: result.number || 0,
         last: result.last

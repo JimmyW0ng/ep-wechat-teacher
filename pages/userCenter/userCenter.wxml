@@ -19,39 +19,46 @@
   <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h">
-        <view class='tab-content' wx:if="{{todayClass.length}}">
-          <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}">
-            <view class='course-avatar-wrap'>
-              <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
-            </view>
-            <view class='course-info'>
-              <view class='course-org-name'>{{item.courseName}}</view>
-              <view class='course-simple-info'>
-                <view class='course-name'>
-                  <view class='basic'>{{item.className}}</view>
-                  <view class='course-hour'>{{item.catalogIndex}}/{{item.courseNum}}课时</view>
-                </view>
-              </view>
-              <view class='course-bottom-info'>
-                <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
+        <loadIcon wx:if="{{loadingToday}}"></loadIcon>
 
-                <view class='btn-wrap'>
-                  <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.viewCommentFlag}}" catchtap='doCheckComment'>查看评价</view>
-                  <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.waitCommentFlag}}" catchtap='doCheckComment'>评价</view>
+        <view wx:else>
+          <view class='tab-content' wx:if="{{todayClass.length}}">
+            <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}">
+              <view class='course-avatar-wrap'>
+                <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
+              </view>
+              <view class='course-info'>
+                <view class='course-org-name'>{{item.courseName}}</view>
+                <view class='course-simple-info'>
+                  <view class='course-name'>
+                    <view class='basic'>{{item.className}}</view>
+                    <view class='course-hour'>{{item.catalogIndex}}/{{item.courseNum}}课时</view>
+                  </view>
+                </view>
+                <view class='course-bottom-info'>
+                  <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
+
+                  <view class='btn-wrap'>
+                    <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.viewCommentFlag}}" catchtap='doCheckComment'>查看评价</view>
+                    <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.waitCommentFlag}}" catchtap='doCheckComment'>评价</view>
+                  </view>
                 </view>
               </view>
             </view>
           </view>
-        </view>
 
-        <view class='no-data-text' wx:else>
-          暂无数据
+          <view class='no-data-text' wx:else>
+            暂无数据
+          </view>
         </view>
       </scroll-view>
     </swiper-item>
 
     <swiper-item>
       <scroll-view scroll-y="{{true}}" class="scoll-h">
+       <loadIcon wx:if="{{loadingAll}}"></loadIcon>
+       
+       <view wx:else>
         <view class='tab-content' wx:if="{{dataSet.length}}">
           <view class='course-list-item' bindtap='goClassDetail' wx:for="{{dataSet}}" wx:key="{{index}}" data-id="{{item.id}}">
             <view class='course-avatar-wrap'>
@@ -74,6 +81,7 @@
 
         <view class="no-data-text" wx:else>
           暂无数据
+        </view>
         </view>
       </scroll-view>
     </swiper-item>

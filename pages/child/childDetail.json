@@ -1,6 +1,7 @@
 {
-    "navigationBarTitleText": "学员详情",
-    "usingComponents": {
-     "tag-list": "../../components/tagList/tagList"
+  "navigationBarTitleText": "学员详情",
+  "usingComponents": {
+    "tag-list": "../../components/tagList/tagList",
+    "loadIcon": "../../components/loadIcon/loadIcon"
   }
 }

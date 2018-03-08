@@ -11,6 +11,8 @@ Page({
     swiperHeight: 200,
     catalogList: [],
     childList: [],
+    loadingCatalog: true,
+    loadingChild: true
   },
 
   selectTab(e) {
@@ -59,6 +61,7 @@ Page({
     const self = this
     AXIOS.POST('auth/organ/account/class/catalog/all', { classId }, res => {
       self.setData({
+        loadingCatalog: false,
         catalogList: res.result || []
       })
     })
@@ -68,6 +71,7 @@ Page({
     const self = this
     AXIOS.POST('auth/organ/account/class/child/all', { classId }, res => {
       self.setData({
+        loadingChild: false,
         childList: res.result || []
       })
     })

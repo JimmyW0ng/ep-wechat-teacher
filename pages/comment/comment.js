@@ -28,6 +28,7 @@ Page({
     },
     classCatalogId: '',
     comment: '',
+    loading: true
   },
 
   /**
@@ -48,6 +49,7 @@ Page({
       let childList = result.childList || []
 
       self.setData({
+        loading: false,
         childList,
         selectedChild: childList[0] || {},
         classCatalog: result.classCatalog || {},

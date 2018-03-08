@@ -6,32 +6,39 @@
 <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h">
-      <view class='tab-content' wx:if="{{catalogList.length}}">
-        <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index">
-          <view class='course-info'>
-            <view class='course-top'>
-              <view class='course-org-name'>{{item.catalogTitle}}</view>
-              <view class='course-date'>{{item.startTimeFormat}}</view>
-            </view>
-            
-            <view class='course-desc' wx:if="{{item.catalogDesc}}">学习内容：{{item.catalogDesc}}</view>
+      <loadIcon wx:if="{{loadingCatalog}}"></loadIcon>
+      
+      <view wx:else>
+        <view class='tab-content' wx:if="{{catalogList.length}}">
+          <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index">
+            <view class='course-info'>
+              <view class='course-top'>
+                <view class='course-org-name'>{{item.catalogTitle}}</view>
+                <view class='course-date'>{{item.startTimeFormat}}</view>
+              </view>
+              
+              <view class='course-desc' wx:if="{{item.catalogDesc}}">学习内容：{{item.catalogDesc}}</view>
 
-            <view class='course-bottom-info'>
-              <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
-              <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.viewCommentFlag}}">查看评价</view>
-              <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.waitCommentFlag}}">评价</view>
+              <view class='course-bottom-info'>
+                <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
+                <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.viewCommentFlag}}">查看评价</view>
+                <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.waitCommentFlag}}">评价</view>
+              </view>
             </view>
           </view>
+
         </view>
 
+        <view class='no-data-text' wx:else>暂无数据</view>
       </view>
-
-      <view class='no-data-text' wx:else>暂无数据</view>
     </scroll-view>
   </swiper-item>
 
   <swiper-item>
     <scroll-view scroll-y="{{true}}" class="scoll-h">
+      <loadIcon wx:if="{{loadingChild}}"></loadIcon>
+
+      <view wx:else>
       <view class='tab-content' wx:if="{{childList.length}}">
         <view class='student-list-item' wx:for="{{childList}}" wx:key="index" bindtap='goChildDetail' data-id="{{item.id}}">
           <view class='student-left'>
@@ -43,6 +50,7 @@
       </view>
 
       <view class='no-data-text' wx:else>暂无数据</view>
+      </view>
     </scroll-view>
   </swiper-item>
 </swiper>

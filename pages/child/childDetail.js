@@ -15,6 +15,7 @@ Page({
       comments: [],
       tags: []
     },
+    loading: true
   },
 
   /**
@@ -28,6 +29,7 @@ Page({
     const self = this
     AXIOS.POST('auth/organ/account/class/child/abstract', { childId, classId }, res => {
       self.setData({
+        loading:false,
         childInfo: res.result || {}
       })
     })
