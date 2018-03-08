@@ -11,7 +11,7 @@
   </view>
 </scroll-view>
 
-<view class='student-info'>
+<view class='student-info' wx:if="{{selectedChild.childId}}">
   <view class='avatar-wrap'>
     <image class='avatar' src="{{selectedChild.avatar || '../../asset/img/avatar-man.png'}}"></image>
   </view>

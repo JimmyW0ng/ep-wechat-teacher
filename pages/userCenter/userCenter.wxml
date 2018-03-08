@@ -19,7 +19,7 @@
   <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h">
-        <view class='tab-content'>
+        <view class='tab-content' wx:if="{{todayClass.length}}">
           <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}">
             <view class='course-avatar-wrap'>
               <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
@@ -42,14 +42,17 @@
               </view>
             </view>
           </view>
+        </view>
 
+        <view class='no-data-text' wx:else>
+          暂无数据
         </view>
       </scroll-view>
     </swiper-item>
 
     <swiper-item>
       <scroll-view scroll-y="{{true}}" class="scoll-h">
-        <view class='tab-content'>
+        <view class='tab-content' wx:if="{{dataSet.length}}">
           <view class='course-list-item' bindtap='goClassDetail' wx:for="{{dataSet}}" wx:key="{{index}}" data-id="{{item.id}}">
             <view class='course-avatar-wrap'>
               <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
@@ -67,6 +70,10 @@
               </view>
             </view>
           </view>
+        </view>
+
+        <view class="no-data-text" wx:else>
+          暂无数据
         </view>
       </scroll-view>
     </swiper-item>

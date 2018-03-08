@@ -47,7 +47,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
-          swiperHeight: res.windowHeight - 98
+          swiperHeight: res.windowHeight - 50
         });
       }
     });

@@ -6,7 +6,7 @@
 <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h">
-      <view class='tab-content'>
+      <view class='tab-content' wx:if="{{catalogList.length}}">
         <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index">
           <view class='course-info'>
             <view class='course-top'>
@@ -25,12 +25,14 @@
         </view>
 
       </view>
+
+      <view class='no-data-text' wx:else>暂无数据</view>
     </scroll-view>
   </swiper-item>
 
   <swiper-item>
     <scroll-view scroll-y="{{true}}" class="scoll-h">
-      <view class='tab-content'>
+      <view class='tab-content' wx:if="{{childList.length}}">
         <view class='student-list-item' wx:for="{{childList}}" wx:key="index" bindtap='goChildDetail' data-id="{{item.id}}">
           <view class='student-left'>
             <image class='student-avatar' src="{{item.avatar || '../../asset/img/avatar-woman.png'}}"></image>
@@ -39,6 +41,8 @@
           <view class='student-count'>{{item.scheduleCommentNum || 0}}条评价</view>
         </view>
       </view>
+
+      <view class='no-data-text' wx:else>暂无数据</view>
     </scroll-view>
   </swiper-item>
 </swiper>

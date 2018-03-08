@@ -41,6 +41,13 @@ page {
   margin: 0 auto;
 }
 
+.no-data-text {
+  font-size: 16px;
+  color: #a4afbf;
+  padding-top: 100px;
+  text-align: center;
+}
+
 .icon-loading {
   animation: loadingWhite 1.2s infinite linear;
   animation-timing-function: steps(10);
