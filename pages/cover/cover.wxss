@@ -1,5 +1,5 @@
 /* pages/cover/cover.wxss */
 
 .cover-page {
-  background: #ed5565;
+  padding-top: 100px;
 }
