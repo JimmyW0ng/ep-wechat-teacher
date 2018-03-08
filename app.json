@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/cover/cover",
     "pages/userCenter/userCenter",
     "pages/comment/comment",
     "pages/child/childDetail",

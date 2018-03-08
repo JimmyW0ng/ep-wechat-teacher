@@ -47,7 +47,11 @@ function request(apiPath, method, param, success, axios) {
     success: function (res) {
       const result = res.data;
       if (result.error) {
-        processRequestError(result)
+        if (param.isCover){
+          processLoginError(result)
+        } else {
+          processRequestError(result)
+        }
       } else {
         success(result);
       }
@@ -70,6 +74,12 @@ function request(apiPath, method, param, success, axios) {
       }
     }
   });
+}
+
+function processLoginError(result){
+  // wx.redirectTo({
+  //   url: LoginUrl
+  // })
 }
 
 function processRequestError(result) {

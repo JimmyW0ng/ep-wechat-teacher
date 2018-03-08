@@ -1,0 +1,7 @@
+<view class='loading-icon'>
+  <view class="img img1"></view>
+  <view class="img img2"></view>
+  <view class="img img3"></view>
+  <view class="img img4"></view>
+  <view class="img img5"></view>
+</view>

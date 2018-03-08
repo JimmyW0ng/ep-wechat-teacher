@@ -98,7 +98,7 @@ Page({
         USER.setMemberType(result.memberType)
         USER.setToken(result.token)
 
-        wx.switchTab({
+        wx.redirectTo({
           url: '/pages/userCenter/userCenter',
         })
       })

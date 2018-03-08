@@ -1,0 +1,5 @@
+/* pages/cover/cover.wxss */
+
+.cover-page {
+  background: #ed5565;
+}

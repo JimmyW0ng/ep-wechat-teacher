@@ -1,0 +1,4 @@
+<!--pages/cover/cover.wxml-->
+<view class='cover-page'>
+  <loadIcon></loadIcon>
+</view>
