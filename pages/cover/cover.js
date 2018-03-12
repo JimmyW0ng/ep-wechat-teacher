@@ -16,24 +16,20 @@ Page({
    */
   onLoad: function (options) {
     let token = User.getToken() || ''
+
     setTimeout(() => {
-      if (token) {
-        wx.redirectTo({
-          url: '/pages/userCenter/userCenter',
-        })
-        // AXIOS.POST('/', {
-        //   isCover: true
-        // }, (res) => {
-        //   wx.redirectTo({
-        //     url: '/pages/userCenter/userCenter',
-        //   })
-        // })
-      } else {
+      if (!token) {
         wx.redirectTo({
           url: '/pages/login/login',
         })
+      } else {
+        AXIOS.POST('auth/member/info', { isCover: true}, () => {
+          wx.redirectTo({
+            url: '/pages/userCenter/userCenter',
+          })
+        })
       }
-    }, 1000)
+    }, 500)
   },
 
   /**

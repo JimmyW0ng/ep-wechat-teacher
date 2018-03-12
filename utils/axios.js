@@ -77,9 +77,9 @@ function request(apiPath, method, param, success, axios) {
 }
 
 function processLoginError(result){
-  // wx.redirectTo({
-  //   url: LoginUrl
-  // })
+  wx.redirectTo({
+    url: LoginUrl
+  })
 }
 
 function processRequestError(result) {
