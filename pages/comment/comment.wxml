@@ -8,7 +8,7 @@
 
   <scroll-view scroll-x="{{true}}" style="width: 100%" class='student-selector'>
     <view class="{{'child-item ' + (item.childId == selectedChild.childId ? 'selected' : '')}}" wx:for="{{childList}}" wx:key="{{index}}" data-index="{{index}}" bindtap='selectChild'>
-      <image class='child-avatar' src="{{item.avatar || '../../asset/img/avatar-man.png'}}"></image>
+      <image class='child-avatar' src="{{item.avatar || '../../asset/img/avatar-man.png'}}" mode="aspectFill"></image>
       <view class='child-name'>{{item.childNickName}}</view>
       <view wx:if="{{!item.waitComment}}" class='icon-active iconfont icon-right1'></view>
     </view>
