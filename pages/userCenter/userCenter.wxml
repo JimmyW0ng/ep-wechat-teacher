@@ -7,7 +7,7 @@
     <view class='id' wx:if="{{accountInfo.id}}">认证编号：{{accountInfo.id}}</view>
   </view>
 
-  <view class='icon-setting'>设置</view>
+  <view class='icon-setting' bindtap='doLogout'>退出</view>
 </view>
 
 <view class='body'>

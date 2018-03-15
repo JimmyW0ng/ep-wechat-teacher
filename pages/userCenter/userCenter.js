@@ -115,6 +115,24 @@ Page({
     })
   },
 
+  doLogout(){
+    wx.showModal({
+      title: '提示',
+      content: '确定要登出账户吗',
+      success: function (res) {
+        if (res.confirm) {
+          wx.clearStorageSync() // 清空缓存
+
+          wx.redirectTo({
+            url: '/pages/login/login',
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
