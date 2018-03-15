@@ -92,7 +92,8 @@ Page({
         captcha: captcha,
         clientId: CONFIG.clientId,
         clientSecret: CONFIG.clientSecret,
-        noToken: true
+        noToken: true,
+        type: 'organ_account'
       }, res => {
         let result = res.result || {}
         USER.setMemberType(result.memberType)
