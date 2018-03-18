@@ -16,7 +16,7 @@ Page({
     todayClass: [],
     dataSet: [],
     page: 0,
-    size: 5,
+    size: 50,
     last: false,
 
     selectedTab: 0,
