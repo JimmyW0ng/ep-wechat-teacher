@@ -20,19 +20,6 @@ function request(apiPath, method, param, success, axios) {
   let token = User.getToken() || ''
 
   wx.showNavigationBarLoading()
-  // wx.showToast({
-  //   icon: "loading",
-  //   duration: 50000
-  // })
-
-  // if (!data.noToken) {
-  //   if (!token) {
-  //     wx.redirectTo({
-  //       url: LoginUrl,
-  //     })
-  //   }
-  // } 
-
   let header = {
     'content-type': 'application/x-www-form-urlencoded', // 默认值
   }
@@ -65,9 +52,6 @@ function request(apiPath, method, param, success, axios) {
       }
     },
     complete: function () {
-      // setTimeout(() => {
-      //   wx.hideToast();
-      // }, LoadingDuration)
       wx.hideNavigationBarLoading()
       if (typeof complete == "function") {
         complete();
@@ -98,20 +82,18 @@ function processRequestError(result) {
       }
     })
   } else {
-    wx.showModal({
-      title: '提示',
-      content: result.errorDescription || '',
-      showCancel: false,
+    wx.showToast({
+      icon: 'none',
+      title: result.errorDescription || '',
     })
   }
 }
 
 function processHttpError(xhr, errorType, error) {
   //TODO Process HTTP error for 404, 503, 403, 500
-  let message = '网络出错';
-  wx.showModal({
-    title: message,
-    showCancel: false,
+  wx.showToast({
+    icon: 'none',
+    title: '网络出错',
   })
 }
 
