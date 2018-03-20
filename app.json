@@ -11,10 +11,10 @@
     "pages/class/classDetail"
   ],
   "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#ccc",
+    "backgroundTextStyle": "white",
+    "navigationBarBackgroundColor": "#5ee495",
     "navigationBarTitleText": "首页",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "debug": true
 }
