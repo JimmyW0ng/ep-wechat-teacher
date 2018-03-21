@@ -32,6 +32,17 @@ Page({
     })
   },
 
+  getOgnList(){
+    // TODO
+    let phone = this.data.phone
+
+    AXIOS.POST('security/api/organs', {
+      clientId: CONFIG.clientId,
+      clientSecret: CONFIG.clientSecret,
+      mobile: phone
+    })
+  },
+
   doGetCaptcha() {
     const self = this
     let phone = this.data.phone
@@ -42,7 +53,7 @@ Page({
           mobile: phone,
           clientId: CONFIG.clientId,
           clientSecret: CONFIG.clientSecret,
-          noToken: true
+          scene: 'organ_account_login'        
         }, res => {
           self.setData({
             code: res.result || '',
