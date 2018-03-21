@@ -10,14 +10,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '',
+    phone: 18000000011,
     code: '',
     captcha: '',
     verifyBtnText: "获取验证码",
     countDown: 60,
     beginCountDown: false,
     userInfo: {},
-    hasUserInfo: false
+    hasUserInfo: false,
+    ognList: [],
+    selectedIndex: 0
   },
 
   bindPhoneInput(e) {
@@ -32,28 +34,70 @@ Page({
     })
   },
 
-  getOgnList(){
+  doGetOgnList() {
     // TODO
+    const self = this
     let phone = this.data.phone
+    if (phone.length == 11) {
+      AXIOS.POST('security/api/organs', {
+        clientId: CONFIG.clientId,
+        clientSecret: CONFIG.clientSecret,
+        mobile: phone
+      }, res => {
+        if (res.result && res.result.length > 0) {
+          self.setData({
+            ognList: res.result
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '您还没有所属的机构',
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入正确的手机号',
+      })
+    }
+  },
 
-    AXIOS.POST('security/api/organs', {
-      clientId: CONFIG.clientId,
-      clientSecret: CONFIG.clientSecret,
-      mobile: phone
+  bindPickerChange(e){
+    console.log('pci', e)
+    console.log(Number(e.detail.value))
+    this.setData({
+      selectedIndex: Number(e.detail.value)
     })
   },
 
   doGetCaptcha() {
     const self = this
-    let phone = this.data.phone
-
+    let phone = self.data.phone
+    let ognList = self.data.ognList || []
+    let ognId = ognList[self.data.selectedIndex].id || ''
+    if(ognList.length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请先选择所属机构',
+      })
+      return
+    } 
+    if (!ognId){
+      wx.showToast({
+        icon: 'none',
+        title: '请先选择所属机构id',
+      })
+      return
+    }
+    
     if (phone.length == 11) {
       if (!self.beginCountDown) {
         AXIOS.POST('security/api/captcha', {
           mobile: phone,
           clientId: CONFIG.clientId,
           clientSecret: CONFIG.clientSecret,
-          scene: 'organ_account_login'        
+          scene: 'organ_account_login'
         }, res => {
           self.setData({
             code: res.result || '',
@@ -103,7 +147,6 @@ Page({
         captcha: captcha,
         clientId: CONFIG.clientId,
         clientSecret: CONFIG.clientSecret,
-        noToken: true,
         type: 'organ_account'
       }, res => {
         let result = res.result || {}
