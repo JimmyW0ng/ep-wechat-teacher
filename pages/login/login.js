@@ -139,20 +139,21 @@ Page({
     let phone = this.data.phone
     let code = this.data.code
     let captcha = this.data.captcha
+    let ognId = self.data.ognList[self.data.selectedIndex].id || ''
 
     if (phone.length == 11 && captcha && code) {
       AXIOS.POST('security/api/token', {
         mobile: phone,
-        code: code,
-        captcha: captcha,
+        code,
+        captch,
         clientId: CONFIG.clientId,
         clientSecret: CONFIG.clientSecret,
-        type: 'organ_account'
+        type: 'WECHAT_APP_ORGAN_CLIENT',
+        ognId
       }, res => {
         let result = res.result || {}
         USER.setMemberType(result.memberType)
         USER.setToken(result.token)
-
         wx.redirectTo({
           url: '/pages/userCenter/userCenter',
         })
