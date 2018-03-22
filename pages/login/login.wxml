@@ -31,10 +31,6 @@
   </view>
 
   <view class='footer'>
-    <view class='btn-login ripple' bindtap='doGetOgnList'>
-      机构
-    </view>
-
     <view class='btn-login ripple' bindtap='doLogin'>
       <view class="iconfont icon-arrowsrightline"></view>
     </view>
