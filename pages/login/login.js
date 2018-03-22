@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: 18000000011,
+    phone: '18000000011',
     code: '',
     captcha: '',
     verifyBtnText: "获取验证码",
@@ -38,6 +38,7 @@ Page({
     // TODO
     const self = this
     let phone = this.data.phone
+
     if (phone.length == 11) {
       AXIOS.POST('security/api/organs', {
         clientId: CONFIG.clientId,
@@ -75,7 +76,9 @@ Page({
     const self = this
     let phone = self.data.phone
     let ognList = self.data.ognList || []
-    let ognId = ognList[self.data.selectedIndex].id || ''
+    let selectedOgn = ognList[self.data.selectedIndex] || {}
+    let ognId = selectedOgn.id || ''
+
     if(ognList.length < 1) {
       wx.showToast({
         icon: 'none',
@@ -145,7 +148,7 @@ Page({
       AXIOS.POST('security/api/token', {
         mobile: phone,
         code,
-        captch,
+        captcha,
         clientId: CONFIG.clientId,
         clientSecret: CONFIG.clientSecret,
         type: 'WECHAT_APP_ORGAN_CLIENT',

@@ -38,6 +38,12 @@
   line-height: 40px;
 }
 
+.ogn-select {
+  margin-bottom: 25px;
+  color: #a4afbf;
+  font-size: 18px;
+}
+
 .form-control.with-btn {
   display: flex;
   align-items: center;
