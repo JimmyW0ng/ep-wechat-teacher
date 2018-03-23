@@ -10,16 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '18000000011',
-    code: '',
-    captcha: '',
-    verifyBtnText: "获取验证码",
-    countDown: 60,
-    beginCountDown: false,
-    userInfo: {},
-    hasUserInfo: false,
-    ognList: [],
-    selectedIndex: 0
+    phone: '18000000011'
   },
 
   bindPhoneInput(e) {
@@ -28,138 +19,13 @@ Page({
     })
   },
 
-  bindCaptchaInput(e) {
-    this.setData({
-      captcha: e.detail.value
-    })
-  },
-
-  doGetOgnList() {
-    // TODO
-    const self = this
-    let phone = this.data.phone
-
-    if (phone.length == 11) {
-      AXIOS.POST('security/api/organs', {
-        clientId: CONFIG.clientId,
-        clientSecret: CONFIG.clientSecret,
-        mobile: phone
-      }, res => {
-        if (res.result && res.result.length > 0) {
-          self.setData({
-            ognList: res.result
-          })
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: '您还没有所属的机构',
-          })
-        }
-      })
-    } else {
-      wx.showToast({
-        icon: 'none',
-        title: '请输入正确的手机号',
-      })
-    }
-  },
-
-  bindPickerChange(e){
-    console.log('pci', e)
-    console.log(Number(e.detail.value))
-    this.setData({
-      selectedIndex: Number(e.detail.value)
-    })
-  },
-
-  doGetCaptcha() {
-    const self = this
-    let phone = self.data.phone
-    let ognList = self.data.ognList || []
-    let selectedOgn = ognList[self.data.selectedIndex] || {}
-    let ognId = selectedOgn.id || ''
-
-    if(ognList.length < 1) {
-      wx.showToast({
-        icon: 'none',
-        title: '请先选择所属机构',
-      })
-      return
-    } 
-    if (!ognId){
-      wx.showToast({
-        icon: 'none',
-        title: '请先选择所属机构id',
-      })
-      return
-    }
-    
-    if (phone.length == 11) {
-      if (!self.beginCountDown) {
-        AXIOS.POST('security/api/captcha', {
-          mobile: phone,
-          clientId: CONFIG.clientId,
-          clientSecret: CONFIG.clientSecret,
-          scene: 'organ_account_login'
-        }, res => {
-          self.setData({
-            code: res.result || '',
-            verifyBtnText: self.data.countDown + "s"
-          })
-
-          loginInterval = setInterval(function () {
-            console.log('fuck')
-            if (self.data.countDown > 1) {
-              self.setData({
-                countDown: self.data.countDown - 1,
-                verifyBtnText: (self.data.countDown - 1) + "s"
-              })
-            } else {
-              clearInterval(loginInterval);
-              self.setData({
-                countDown: 60,
-                beginCountDown: false,
-                verifyBtnText: '重新发送'
-              })
-            }
-          }, 1000);
-        }, res => {
-          self.setData({
-            beginCountDown: true,
-          })
-        });
-      }
-    } else {
-      wx.showToast({
-        icon: 'none',
-        title: '请输入正确的手机号',
-      })
-    }
-  },
-
   doLogin() {
     const self = this
     let phone = this.data.phone
-    let code = this.data.code
-    let captcha = this.data.captcha
-    let ognId = self.data.ognList[self.data.selectedIndex].id || ''
 
-    if (phone.length == 11 && captcha && code) {
-      AXIOS.POST('security/api/token', {
-        mobile: phone,
-        code,
-        captcha,
-        clientId: CONFIG.clientId,
-        clientSecret: CONFIG.clientSecret,
-        type: 'WECHAT_APP_ORGAN_CLIENT',
-        ognId
-      }, res => {
-        let result = res.result || {}
-        USER.setMemberType(result.memberType)
-        USER.setToken(result.token)
-        wx.redirectTo({
-          url: '/pages/userCenter/userCenter',
-        })
+    if (phone.length == 11) {
+      wx.navigateTo({
+        url: './selectOgn/selectOgn?phone=' + phone,
       })
     } else {
       wx.showToast({
@@ -226,7 +92,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    clearInterval(loginInterval);
+    // clearInterval(loginInterval);
   },
 
   /**

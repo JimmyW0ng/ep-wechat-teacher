@@ -8,7 +8,8 @@
     "pages/logs/logs",
     "pages/login/login",
     "pages/setting/setting",
-    "pages/class/classDetail"
+    "pages/class/classDetail",
+    "pages/login/selectOgn/selectOgn"
   ],
   "window": {
     "backgroundTextStyle": "white",

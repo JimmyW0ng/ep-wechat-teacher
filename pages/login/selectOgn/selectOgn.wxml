@@ -1,0 +1,27 @@
+<!--pages/login/selectOgn/selectOgn.wxml-->
+<view class="page">
+
+  <view class='title'>选择机构:</view>  
+
+  <view class='baby-list'>
+    <view class="baby-list-item" bindtap='bindPickerChange' data-index="{{index}}" wx:for="{{ognList}}" wx:key="{{index}}">
+      <view class='item-name'>{{item.ognName}}</view>
+      <view class="item-selector {{index == selectedIndex ? 'active' : ''}}">
+        <view class='iconfont icon-right1'></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='form-control with-btn'>
+    <input maxlength="6" type="number" value="{{captcha}}" bindinput="bindCaptchaInput" placeholder="验证码" />
+    <view class='btn-send ripple' bindtap='doGetCaptcha'>
+      {{verifyBtnText}}
+    </view>
+  </view>
+
+  <view class='footer'>
+    <view class='btn-login ripple' bindtap='doLogin'>
+      <view class="iconfont icon-arrowsrightline"></view>
+    </view>
+  </view>
+</view>

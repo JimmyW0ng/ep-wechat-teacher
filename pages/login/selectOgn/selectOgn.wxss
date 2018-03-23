@@ -1,0 +1,142 @@
+/* pages/login/LoginPage.wxss */
+
+.page {
+  padding: 40px;
+}
+
+.header {
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: #d8d8d8;
+}
+
+.notice {
+  margin-top: 25px;
+  font-size: 16px;
+  color: #1e293c;
+  line-height: 16px;
+}
+
+.body {
+  margin-top: 40px;
+}
+
+.form-control {
+  border-bottom: 1px solid #eaeaea;
+  margin-top: 25px;
+}
+
+.form-control input {
+  border: none;
+  color: #a4afbf;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.ogn-select {
+  margin-bottom: 25px;
+  color: #a4afbf;
+  font-size: 18px;
+}
+
+.form-control.with-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-control.with-btn input {
+  width: 60%;
+}
+
+.btn-send {
+  color: #2ad5f3;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.footer {
+  margin-top: 80px;
+  text-align: right;
+}
+
+.btn-login {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50px;
+  background: #2ad5f3;
+  color: #fff;
+  text-align: center;
+  margin-left: 15px;
+}
+
+.icon-arrowsrightline {
+  font-size: 24px;
+}
+
+
+
+.baby-list {
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.baby-list-item 
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9e9e9;
+  padding: 10px 0;
+}
+
+.baby-list-item.add-baby .text{
+  font-size: 16px;
+  color: #ddd;
+  line-height: 16px;
+}
+
+.baby-list-item .joined-text {
+  color: #999;
+}
+.baby-info {
+  display: flex;
+  align-items: center;
+}
+.item-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  display: inline-block;
+  margin-right: 12px;
+}
+.item-name {
+  font-size: 16px;
+color: #1E293C;
+line-height: 16px;
+}
+
+.item-selector {
+  color: #ddd;
+  border: 1px solid #ddd;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+}
+.item-selector.active {
+  background: #5ee495;
+  color: #fff;
+  border: 1px solid #5ee495
+}
