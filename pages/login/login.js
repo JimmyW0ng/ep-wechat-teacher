@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '18000000011'
+    phone: ''
   },
 
   bindPhoneInput(e) {
@@ -24,8 +24,21 @@ Page({
     let phone = this.data.phone
 
     if (phone.length == 11) {
-      wx.navigateTo({
-        url: './selectOgn/selectOgn?phone=' + phone,
+      AXIOS.POST('security/api/organs', {
+        clientId: CONFIG.clientId,
+        clientSecret: CONFIG.clientSecret,
+        mobile: phone
+      }, res => {
+        if (res.result && res.result.length > 0) {
+          wx.navigateTo({
+            url: './selectOgn/selectOgn?phone=' + phone,
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '您还没有所属的机构',
+          })
+        }
       })
     } else {
       wx.showToast({
