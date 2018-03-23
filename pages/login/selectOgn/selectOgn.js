@@ -86,6 +86,7 @@ Page({
         }, res => {
           self.setData({
             code: res.result || '',
+            beginCountDown: true,
             verifyBtnText: self.data.countDown + "s"
           })
 
@@ -124,7 +125,9 @@ Page({
     let phone = this.data.phone
     let code = this.data.code
     let captcha = this.data.captcha
-    let ognId = self.data.ognList[self.data.selectedIndex].id || ''
+    let ognList = self.data.ognList || []
+    let selectedOgn = ognList[self.data.selectedIndex] || {}
+    let ognId = selectedOgn.id || ''
 
     if (phone.length == 11 && captcha && code) {
       AXIOS.POST('security/api/token', {
