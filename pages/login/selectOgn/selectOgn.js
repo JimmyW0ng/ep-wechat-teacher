@@ -20,6 +20,7 @@ Page({
     ognList: [],
     selectedIndex: 0
   },
+  
   bindCaptchaInput(e) {
     this.setData({
       captcha: e.detail.value
@@ -76,7 +77,7 @@ Page({
     }
 
     if (phone.length == 11) {
-      if (!self.beginCountDown) {
+      if (!self.data.beginCountDown) {
         AXIOS.POST('security/api/captcha', {
           mobile: phone,
           clientId: CONFIG.clientId,
