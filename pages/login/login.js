@@ -43,7 +43,7 @@ Page({
     } else {
       wx.showToast({
         icon: 'none',
-        title: '请输入正确的手机号或验证码',
+        title: '请输入正确的手机号',
       })
     }
   },
