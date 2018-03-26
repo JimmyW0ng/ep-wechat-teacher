@@ -53,6 +53,8 @@ function request(apiPath, method, param, success, axios) {
     },
     complete: function () {
       wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+
       if (typeof complete == "function") {
         complete();
       }
