@@ -17,7 +17,7 @@
                 <view class='course-date'>{{item.startTimeFormat}}</view>
               </view>
               
-              <view class='course-desc' wx:if="{{item.catalogDesc}}">学习内容：{{item.catalogDesc}}</view>
+              <view class='course-desc' wx:if="{{item.catalogDesc}}">内容：{{item.catalogDesc}}</view>
 
               <view class='course-bottom-info'>
                 <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>

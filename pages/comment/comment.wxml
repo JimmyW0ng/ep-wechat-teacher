@@ -3,7 +3,7 @@
 <view wx:else>
   <view class="course-info">
     <view class='course-name'>{{classCatalog.catalogTitle}}</view>
-    <view class='course-desc' wx:if="{{classCatalog.catalogDesc}}">学习内容：{{classCatalog.catalogDesc}}</view>
+    <view class='course-desc' wx:if="{{classCatalog.catalogDesc}}">内容：{{classCatalog.catalogDesc}}</view>
   </view>
 
   <scroll-view scroll-x="{{true}}" style="width: 100%" class='student-selector'>
