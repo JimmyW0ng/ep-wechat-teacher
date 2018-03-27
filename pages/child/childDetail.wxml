@@ -6,7 +6,7 @@
 
     <view class='userCenter-header-bottom'>
       <view class='child-school' wx:if="{{childInfo.childNickName}}">{{childInfo.childNickName}}</view>
-      <view class='child-class' wx:if="{{childInfo.currentClass}}">{{childInfo.currentClass}}</view>
+      <view class='child-class' wx:if="{{childInfo.currentClass}}">{{childInfo.currentSchool}} {{childInfo.currentClass}}</view>
       <view class='child-sign text-ellipsis' wx:if="{{childInfo.sign}}">{{childInfo.sign}}</view>
     </view>
   </view>
