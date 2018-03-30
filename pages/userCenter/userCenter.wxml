@@ -35,9 +35,8 @@
                     <view class='course-hour' wx:if="{{item.type == 'normal'}}">{{item.catalogIndex}}/{{item.courseNum}}</view>
                   </view>
                 </view>
-                <view class='course-start-date'>
-                  开始时间: {{item.startTimeFormat}}
-                </view>
+                
+                <view class='course-start-date'>{{item.startTimeFormat}}</view>
             
                 <view class='course-bottom-info'>
                   <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.childNum}}人</view>
