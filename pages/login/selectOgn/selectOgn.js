@@ -142,7 +142,7 @@ Page({
         let result = res.result || {}
         USER.setMemberType(result.memberType)
         USER.setToken(result.token)
-        wx.redirectTo({
+        wx.reLaunch({
           url: '/pages/userCenter/userCenter',
         })
       })
