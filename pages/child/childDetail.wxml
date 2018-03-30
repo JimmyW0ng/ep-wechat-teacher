@@ -14,7 +14,7 @@
   <tag-list tags="{{childInfo.tags}}"></tag-list>
 
   <view class='userCenter-footer' wx:if="{{childInfo.id}}">
-    <view class='footer-title'>评价 {{childInfo.comments.length > 0 ? '（' + childInfo.comments.length + '）' : '' }}</view>
+    <view class='footer-title'>评价{{childInfo.comments.length > 0 ? '(' + childInfo.comments.length + ')' : '' }}</view>
     <view class='comment-list' wx:if="{{childInfo.comments.length}}">
       <view class='comment-item' bindtap='goTeacherComment' data-orderid="{{item.orderId}}" wx:for="{{childInfo.comments}}" wx:key="{{index}}">
         <view class='teacher-basic'>

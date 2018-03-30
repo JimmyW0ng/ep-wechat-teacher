@@ -57,9 +57,9 @@ Page({
 
   },
 
-  getClassCatalog(classId) {
+  getNormalClassCatalog(classId) {
     const self = this
-    AXIOS.POST('auth/organ/account/class/catalog/all', { classId }, res => {
+    AXIOS.POST('auth/organ/account/normal/class/catalog/all', { classId }, res => {
       self.setData({
         loadingCatalog: false,
         catalogList: res.result || []
@@ -97,7 +97,7 @@ Page({
    */
   onShow: function () {
     let classId = this.data.classId
-    this.getClassCatalog(classId)
+    this.getNormalClassCatalog(classId)
     this.getClassChild(classId)
   },
 
