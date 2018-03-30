@@ -12,8 +12,8 @@
 
 <view class='body'>
   <view class='tab-header' style="display: flex; flex-direction:row;">
-    <view class="tab-selector {{selectedTab == 0 && 'active'}}" data-tab="0" bindtap='selectTab'>今日课时</view>
-    <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>全部课程</view>
+    <view class="tab-selector {{selectedTab == 0 && 'active'}}" data-tab="0" bindtap='selectTab'>今日班次</view>
+    <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>全部产品</view>
   </view>
 
   <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
