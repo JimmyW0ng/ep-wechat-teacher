@@ -1,6 +1,6 @@
 <!--pages/userCenter/userCenter.wxml-->
 <view class='header'>
-  <image class='avatar' src='{{ "../../asset/img/avatar-default.png"}}' mode="aspectFill"></image>
+  <image class='avatar' src='{{accountInfo.avatar || "../../asset/img/avatar-default.png"}}' mode="aspectFill"></image>
   <view class='info'>
     <view class='name' wx:if="{{accountInfo.nickName}}">{{accountInfo.nickName}}</view>
     <view class='ogn' wx:if="{{accountInfo.ognName}}">{{accountInfo.ognName}}</view>
