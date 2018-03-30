@@ -23,7 +23,7 @@ Page({
           url: '/pages/login/login',
         })
       } else {
-        AXIOS.POST('auth/member/info', { isCover: true}, () => {
+        AXIOS.POST('auth/organ/account/info', { isCover: true}, () => {
           wx.redirectTo({
             url: '/pages/userCenter/userCenter',
           })
