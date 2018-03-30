@@ -28,7 +28,7 @@
                 <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill" mode="aspectFill"></image>
               </view>
               <view class='course-info'>
-                <view class='course-org-name'>{{item.courseName}}</view>
+                <view class='course-org-name'>{{item.courseName}} {{item.type}}</view>
                 <view class='course-simple-info'>
                   <view class='course-name'>
                     <view class='basic'>{{item.className}}</view>
@@ -67,7 +67,9 @@
               <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
             </view>
             <view class='course-info'>
-              <view class='course-org-name'>{{item.courseName}}</view>
+              <view class='course-org-name'>
+                {{item.courseName}} {{item.type}}
+              </view>
               <view class='course-simple-info'>
                 <view class='course-name'>{{item.className}}</view>
               </view>
