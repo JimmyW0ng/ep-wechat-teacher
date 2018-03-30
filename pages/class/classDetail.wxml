@@ -21,8 +21,7 @@
 
               <view class='course-bottom-info'>
                 <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
-                <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.viewCommentFlag}}">查看评价</view>
-                <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}"  bindtap='doCheckComment' wx:if="{{item.waitCommentFlag}}">评价</view>
+                <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" bindtap='doCheckComment'>随堂评价</view>
               </view>
             </view>
           </view>

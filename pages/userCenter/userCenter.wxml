@@ -32,15 +32,18 @@
                 <view class='course-simple-info'>
                   <view class='course-name'>
                     <view class='basic'>{{item.className}}</view>
-                    <view class='course-hour'>{{item.catalogIndex}}/{{item.courseNum}}课时</view>
+                    <view class='course-hour' wx:if="{{item.type == 'normal'}}">{{item.catalogIndex}}/{{item.courseNum}}</view>
                   </view>
                 </view>
+                <view class='course-start-date'>
+                  开始时间: {{item.startTimeFormat}}
+                </view>
+            
                 <view class='course-bottom-info'>
-                  <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.enteredNum}}人</view>
+                  <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.childNum}}人</view>
 
                   <view class='btn-wrap'>
-                    <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.viewCommentFlag}}" catchtap='doCheckComment'>查看评价</view>
-                    <view class='btn-ghost' data-classcatelogid="{{item.classCatalogId}}" wx:if="{{item.waitCommentFlag}}" catchtap='doCheckComment'>评价</view>
+                    <view class='btn-ghost' data-classid="{{item.classId}}" data-time="{{item.startTimeStamp}}" catchtap='doCheckComment'>随堂评价</view>
                   </view>
                 </view>
               </view>

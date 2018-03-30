@@ -26,7 +26,8 @@ Page({
     selectedChild: {
 
     },
-    classCatalogId: '',
+    classId: '',
+    startTimeStamp: '',
     comment: '',
     loading: true
   },
@@ -35,15 +36,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let classCatalogId = options.classCatalogId
-    this.setData({ classCatalogId })
-    this.getData(classCatalogId)
+    let classId = options.classId
+    let startTimeStamp = options.time
+
+    this.setData({ classId, startTimeStamp })
+    this.getData(classId, startTimeStamp)
   },
 
-  getData(classCatalogId) {
+  getData(classId, startTimeStamp) {
     const self = this
     AXIOS.POST('auth/organ/account/class/catalog/init', {
-      classCatalogId
+      classId, startTimeStamp
     }, res => {
       let result = res.result || {}
       let childList = result.childList || []

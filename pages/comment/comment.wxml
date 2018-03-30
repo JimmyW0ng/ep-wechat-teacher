@@ -2,15 +2,15 @@
 
 <view wx:else>
   <view class="course-info">
-    <view class='course-name'>{{classCatalog.catalogTitle}}</view>
-    <view class='course-desc' wx:if="{{classCatalog.catalogDesc}}">内容：{{classCatalog.catalogDesc}}</view>
+    <view class='course-name'>{{selectedChild.catalogTitle}}</view>
+    <view class='course-desc' wx:if="{{selectedChild.catalogDesc}}">内容：{{selectedChild.catalogDesc}}</view>
   </view>
 
   <scroll-view scroll-x="{{true}}" style="width: 100%" class='student-selector'>
     <view class="{{'child-item ' + (item.childId == selectedChild.childId ? 'selected' : '')}}" wx:for="{{childList}}" wx:key="{{index}}" data-index="{{index}}" bindtap='selectChild'>
       <image class='child-avatar' src="{{item.avatar || '../../asset/img/avatar-man.png'}}" mode="aspectFill"></image>
       <view class='child-name'>{{item.childNickName}}</view>
-      <view wx:if="{{!item.waitComment}}" class='icon-active iconfont icon-right1'></view>
+      <view wx:if="{{item.evaluateFlag}}" class='icon-active iconfont icon-right1'></view>
     </view>
   </scroll-view>
 
@@ -24,7 +24,14 @@
       <view class='title-text'>今日表现</view>
     </view>
 
-    <view wx:if="{{selectedChild.waitComment}}">
+    <view wx:if="{{selectedChild.evaluateFlag}}">
+      <tag-list otherstyle="border:none; padding: 0 20px 20px 0" tags="{{selectedChild.tags}}"></tag-list>
+      <view class='content-wrap' wx:if="{{selectedChild.comment}}">
+        {{selectedChild.comment || ''}}
+      </view>
+    </view>
+
+    <view wx:else>
       <view class='tag-list-select' style="border:none; padding: 0 20px 20px 0" wx:if="{{courseTagList.length}}">
         <view class="{{'tag ' + (item.isActive ? 'active': '')}}" data-tagid="{{item.tagId}}" wx:for="{{courseTagList}}" bindtap='selectTag' wx:key="{{index}}">
           {{item.tagName}}
@@ -33,15 +40,8 @@
 
       <textarea bindinput="changeComment" value="{{comment}}" maxlength='300' placeholder='请输入评价' class='content-textarea'></textarea>
 
-      <view class='btn-wrap' wx:if="{{selectedChild.waitComment}}">
+      <view class='btn-wrap'>
         <view class='btn-primary ripple' bindtap='doComment'>提交评价</view>
-      </view>
-    </view>
-
-    <view wx:else>
-      <tag-list otherstyle="border:none; padding: 0 20px 20px 0" tags="{{selectedChild.tags}}"></tag-list>
-      <view class='content-wrap' wx:if="{{selectedChild.comment}}">
-        {{selectedChild.comment || ''}}
       </view>
     </view>
   </view>
