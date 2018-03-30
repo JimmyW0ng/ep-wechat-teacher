@@ -29,6 +29,10 @@
       <view class='content-wrap' wx:if="{{selectedChild.comment}}">
         {{selectedChild.comment || ''}}
       </view>
+
+      <view class='btn-wrap'>
+        <view class="btn-primary disabled ripple" bindtap='cancelComment'>撤销评价</view>
+      </view>
     </view>
 
     <view wx:else>

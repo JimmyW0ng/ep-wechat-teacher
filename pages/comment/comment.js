@@ -16,7 +16,7 @@ Page({
       //   childNickName: '',
       //   id: '',
       //   tags: '',
-      //   waitComment: '',
+      //   evaluateFlag: '',
       // }
     ],
 
@@ -88,10 +88,46 @@ Page({
     })
   },
 
+  cancelComment() {
+    let self = this
+    let selectedChild = self.data.selectedChild || {}
+    let childId = selectedChild.childId || ''
+    let classScheduleId = selectedChild.classScheduleId || ''
+
+    AXIOS.POST('auth/organ/account/class/catalog/comment/cancel', {
+      classScheduleId
+    }, res => {
+      wx.showToast({
+        title: '撤销评价成功',
+      })
+      self.data.courseTagList.map((item, index) => {
+        item.isActive = false
+      })
+      let childList = self.data.childList
+      let tempChild = {}
+      childList.map((item, index) => {
+        if (item.childId == childId) {
+          item.evaluateFlag = false
+          item.tags = []
+          item.comment = ''
+          tempChild = item
+        }
+      })
+
+      self.setData({
+        childList,
+        comment: '',
+        courseTagList: self.data.courseTagList,
+        selectedChild: tempChild
+      })
+    })
+  },
+
   doComment() {
     const self = this
-    let classCatalogId = self.data.classCatalogId || ''
-    let childId = self.data.selectedChild.childId || ''
+    let selectedChild = self.data.selectedChild || {}
+    let classScheduleId = selectedChild.classScheduleId || ''
+    let childId = selectedChild.childId || ''
     let tagIds = []
     let tempTags = []
 
@@ -112,8 +148,7 @@ Page({
     }
 
     AXIOS.POST('auth/organ/account/class/catalog/comment', {
-      classCatalogId,
-      childId,
+      classScheduleId,
       tagIds,
       comment
     }, res => {
@@ -127,7 +162,7 @@ Page({
       let tempChild = {}
       childList.map((item, index) => {
         if (item.childId == childId) {
-          item.waitComment = false
+          item.evaluateFlag = true
           item.tags = tempTags
           item.comment = comment || ''
           tempChild = item
