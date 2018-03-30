@@ -14,10 +14,11 @@
 
 .avatar {
   display: inline-block;
-  width: 80px;
-  height: 80px;
-  border-radius: 80px;
-  border: 2px solid #fff;
+  width: 75px;
+  height: 75px;
+  border-radius: 75px;
+  border: 1px solid #fff;
+  background: #fff;
 }
 
 .info {
