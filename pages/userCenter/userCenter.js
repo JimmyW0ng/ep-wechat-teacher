@@ -103,9 +103,16 @@ Page({
 
   goClassDetail(e){
     let classId = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/class/classDetail?classId=' + classId,
-    })
+    let type = e.currentTarget.dataset.type
+    if (type == 'bespeak') {
+      wx.navigateTo({
+        url: '/pages/class/beSpeakClassDetail?classId=' + classId,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/class/classDetail?classId=' + classId,
+      })
+    }
   },
 
   doCheckComment(e) {

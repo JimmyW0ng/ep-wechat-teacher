@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "学员列表",
+  "usingComponents": {
+    "loadIcon": "../../components/loadIcon/loadIcon"
+  }
+}
