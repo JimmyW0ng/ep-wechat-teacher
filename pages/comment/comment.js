@@ -94,32 +94,41 @@ Page({
     let childId = selectedChild.childId || ''
     let classScheduleId = selectedChild.classScheduleId || ''
 
-    AXIOS.POST('auth/organ/account/class/catalog/comment/cancel', {
-      classScheduleId
-    }, res => {
-      wx.showToast({
-        title: '撤销评价成功',
-      })
-      self.data.courseTagList.map((item, index) => {
-        item.isActive = false
-      })
-      let childList = self.data.childList
-      let tempChild = {}
-      childList.map((item, index) => {
-        if (item.childId == childId) {
-          item.evaluateFlag = false
-          item.tags = []
-          item.comment = ''
-          tempChild = item
-        }
-      })
+    wx.showModal({
+      title: '提示',
+      content: '确定要撤销评价么？',
+      success: function (res) {
+        if (res.confirm) {
 
-      self.setData({
-        childList,
-        comment: '',
-        courseTagList: self.data.courseTagList,
-        selectedChild: tempChild
-      })
+          AXIOS.POST('auth/organ/account/class/catalog/comment/cancel', {
+            classScheduleId
+          }, res => {
+            wx.showToast({
+              title: '撤销评价成功',
+            })
+            self.data.courseTagList.map((item, index) => {
+              item.isActive = false
+            })
+            let childList = self.data.childList
+            let tempChild = {}
+            childList.map((item, index) => {
+              if (item.childId == childId) {
+                item.evaluateFlag = false
+                item.tags = []
+                item.comment = ''
+                tempChild = item
+              }
+            })
+
+            self.setData({
+              childList,
+              comment: '',
+              courseTagList: self.data.courseTagList,
+              selectedChild: tempChild
+            })
+          })
+        }
+      }
     })
   },
 
