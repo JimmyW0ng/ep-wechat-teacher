@@ -1,0 +1,24 @@
+<loadIcon wx:if="{{loading}}"></loadIcon>
+
+<view wx:else>
+  <view class='tab-content' wx:if="{{catalogList.length}}">
+    <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index">
+      <view class='course-info'>
+        <view class='course-top'>
+          <view class='course-org-name'>{{item.catalogTitle}}</view>
+          <view class='course-date'>{{item.startTimeFormat}}</view>
+        </view>
+
+        <view class='course-desc' wx:if="{{item.catalogDesc}}">内容：{{item.catalogDesc}}</view>
+
+        <view class='course-bottom-info'>
+          <view class='btn-ghost' data-classid="{{item.classId}}" data-time="{{item.startTimeStamp}}" bindtap='doCheckComment'>
+            {{item.evaluateFlag ? '查看评价' : '去评价'}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='no-data-text' wx:else>暂无预约详情</view>
+</view>

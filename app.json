@@ -10,7 +10,8 @@
     "pages/setting/setting",
     "pages/class/classDetail",
     "pages/login/selectOgn/selectOgn",
-    "pages/class/beSpeakClassDetail"
+    "pages/class/beSpeakClassDetail",
+    "pages/class/beSpeakDetail"
   ],
   "window": {
     "backgroundTextStyle": "white",

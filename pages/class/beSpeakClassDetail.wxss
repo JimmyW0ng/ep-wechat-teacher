@@ -4,12 +4,6 @@ swiper-item {
   overflow-y: scroll;
 }
 
-.tab-content {
-}
-
-.course-list-wrap {
-}
-
 .course-list-item {
   display: flex;
   align-items: top;
@@ -97,7 +91,9 @@ swiper-item {
   color: #a4afbf;
 }
 
-.course-detail-footer {
+.btn-bespeak {
+  color: #5ee495;
+  font-size: 14px;
 }
 
 .student-list-item {

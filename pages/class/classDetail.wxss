@@ -4,12 +4,6 @@ swiper-item {
   overflow-y: scroll;
 }
 
-.tab-content {
-}
-
-.course-list-wrap {
-}
-
 .course-list-item {
   display: flex;
   align-items: top;

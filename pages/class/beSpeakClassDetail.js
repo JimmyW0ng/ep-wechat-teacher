@@ -45,6 +45,16 @@ Page({
     })
   },
 
+  getBespeakList(e){
+    const self = this
+    let childId = e.currentTarget.dataset.id
+    let classId = self.data.classId
+    let name = e.currentTarget.dataset.name || ''
+    wx.navigateTo({
+      url: `/pages/class/beSpeakDetail?childId=${childId}&classId=${classId}&studentName=${name}`
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -2,12 +2,13 @@
 
 <view wx:else>
   <view class='tab-content' wx:if="{{childList.length}}">
-    <view class='student-list-item' wx:for="{{childList}}" wx:key="index" bindtap='goChildDetail' data-id="{{item.id}}">
-      <view class='student-left'>
+    <view class='student-list-item' wx:for="{{childList}}" wx:key="index">
+      <view class='student-left' bindtap='goChildDetail' data-id="{{item.id}}">
         <image class='student-avatar' src="{{item.avatar || '../../asset/img/avatar-woman.png'}}"></image>
         <view class='student-name'>{{item.childNickName}}</view>
       </view>
-      <view class='student-count'>{{item.scheduleCommentNum || 0}}条评价</view>
+       <view class='student-count'>{{item.scheduleCommentNum || 0}}条评价</view> 
+      <view class='btn-bespeak' bindtap='getBespeakList' data-name="{{item.childNickName}}" data-id="{{item.id}}">预约详情</view>
     </view>
   </view>
 
