@@ -11,7 +11,9 @@
     "pages/class/classDetail",
     "pages/login/selectOgn/selectOgn",
     "pages/class/beSpeakClassDetail",
-    "pages/class/beSpeakDetail"
+    "pages/class/beSpeakDetail",
+    "pages/course/courseDetail",
+    "pages/course/courseCommentPage/courseCommentPage"
   ],
   "window": {
     "backgroundTextStyle": "white",

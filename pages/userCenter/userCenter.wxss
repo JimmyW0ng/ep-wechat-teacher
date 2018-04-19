@@ -148,3 +148,13 @@ swiper-item {
 .course-status.disabled {
   color: #999;
 }
+
+.course-actions {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.btn-ghost {
+  margin-left: 8px;
+  margin-bottom: 8px;
+}

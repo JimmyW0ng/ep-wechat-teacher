@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "课程详情",
+  "navigationBarTitleText": "随堂管理",
   "usingComponents": {
     "loadIcon": "../../components/loadIcon/loadIcon"
   }

@@ -1,0 +1,140 @@
+<loadIcon wx:if="{{loading}}"></loadIcon>
+
+<view class='page' wx:else>
+  <view class='course-list-item'>
+    <view class='course-avatar-wrap'>
+      <image class="course-avatar" src="{{course.mainPicUrl}}" mode="aspectFill"></image>
+    </view>
+    <view class='course-info'>
+      <view class='course-course-name'>{{course.courseName}}</view>
+      <view class='course-ognName' bindtap='goOgnDetail'>{{course.ognName}}</view>
+
+      <view class='course-basic-info'>
+        <view class='course-tag-wrap'>
+          <view class='course-tag'>{{course.label}}</view>
+          <view class='vip-name' wx:if="{{course.vipFlag && course.vipName}}">{{course.vipName}}专享</view>
+        </view>
+      </view>
+      <view class='course-name'>{{course.courseIntroduce}}</view>
+      <view class='course-bottom-info'>
+        <view class='course-note'>{{course.courseNote}}</view>
+      </view>
+
+      <view class='ribbon {{course.courseType}}' wx:if="{{course.courseTypeText}}">
+        {{course.courseTypeText}}
+      </view>
+    </view>
+  </view>
+
+  <view class='tab-header'>
+    <view class="tab-selector {{selectedTab == 0 && 'active'}}" data-tab="0" bindtap='selectTab'>产品介绍</view>
+    <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>团队介绍</view>
+    <view class="tab-selector {{selectedTab == 2 && 'active'}}" data-tab="2" bindtap='selectTab'>评价</view>
+  </view>
+
+  <swiper style="height:{{swiperHeight}}px; padding-bottom: 50px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <view class='tab-content course-introduce'>
+          <view class='tab-join-notice'>
+            <import src="../../utils/wxParse/wxParse.wxml" />
+            <template is="wxParse" data="{{wxParseData: courseContent.nodes}}" />
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <view class='tab-content course-team'>
+          <view class='tab-content-title'>团队介绍
+            <view class='title-info'>({{team.length}}位)</view>
+          </view>
+
+          <view class='teacher-item' wx:for="{{team}}" wx:key="index">
+            <view class='teacher-basic'>
+              <image class="teacher-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+              <view class='teacher-info'>
+                <view class='teacher-title'>授课老师</view>
+                <view class='teacher-name'>{{item.nickName}}</view>
+              </view>
+            </view>
+
+            <text class='teacher-introduce'>{{item.introduce}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+
+        <view class='tab-content course-comments'>
+          <view class='tab-content-title'>评价
+            <view class='title-info' wx:if="{{totalCommentNum > 0}}">
+              ({{totalCommentNum}}条)
+            </view>
+          </view>
+
+          <view wx:if="{{totalCommentNum == 0}}" class='no-comments'>暂无评价</view>
+
+          <view wx:if="{{comments.length > 0}}" wx:for="{{comments}}" wx:key="index">
+            <comment-item comment="{{item}}"></comment-item>
+          </view>
+
+          <view class='comment-check-all ripple' bindtap='goCourseCommentPage' wx:if="{{totalCommentNum > 0 && (comments.length != totalCommentNum)}}">
+            <view class='check-all-text'>查看全部评价</view>
+            <view class='check-all-icon iconfont icon-right2'></view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+  <view class='course-detail-footer'>
+    <view class='footer-left'>
+      <view class='footer-left-phone' wx:if="{{course.ognPhone}}">
+        <view class='iconfont icon-phone ripple' bindtap='callOgn' data-ognPhone="{{course.ognPhone}}"></view>
+      </view>
+    </view>
+
+    <view class='footer-right'>
+      <view wx:if="{{course.courseStatus=='offline'}}" class='btn-primary small disabled'>
+        <view>已结束</view>
+        <view class='text'>已有{{course.totalParticipate}}人加入</view>
+      </view>
+
+      <view wx:else>
+        <view class='btn-primary small ripple' bindtap='showPopup'>
+          <view>查看班次 ￥{{course.prizeMin || 0}}</view>
+          <view class='text'>已有{{course.totalParticipate}}人加入</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 报名 PopUp -->
+<view class="zan-popup zan-popup--bottom {{popupStatus ? 'zan-popup--show' : ''}}">
+  <view class="zan-popup__mask" bindtap='closePopup'></view>
+  <view class="zan-popup__container join-container">
+    <view class='join-title'>班次</view>
+
+    <view class='date-list'>
+      <view class="date-btn {{index == selectedClassIndex && 'active'}}" wx:for="{{classes}}" wx:key="{{index}}" data-index="{{index}}" bindtap='chooseClass'>
+        {{item.className}}
+      </view>
+    </view>
+
+    <view class='join-title'>班次信息</view>
+    <view class='contact-info'>
+      <view class='contact-left' data-name="{{selectedClass.className}}" data-address="{{selectedClass.address}}" data-lat='{{selectedClass.addressLat}}' data-lng="{{selectedClass.addressLng}}" bindtap='openAddress'>
+        <view class='iconfont icon-address' wx:if="{{selectedClass.addressLat && selectedClass.addressLng}}"></view>
+        <view class='org-address'>{{selectedClass.address}}</view>
+      </view>
+      <view class='contact-right'>
+        <view class='iconfont icon-phone ripple' bindtap='callOgn' data-ognPhone="{{selectedClass.phone}}"></view>
+      </view>
+    </view>
+  </view>
+</view>

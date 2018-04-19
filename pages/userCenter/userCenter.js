@@ -101,7 +101,15 @@ Page({
     })
   },
 
-  goClassDetail(e){
+  goCourseDetail(e){
+    let courseId = e.currentTarget.dataset.courseid
+
+    wx.navigateTo({
+      url: '/pages/course/courseDetail?id=' + courseId,
+    })
+  },
+
+  goManagePage(e){
     let classId = e.currentTarget.dataset.id
     let type = e.currentTarget.dataset.type
     if (type == 'bespeak') {

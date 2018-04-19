@@ -25,7 +25,7 @@
           <view class='tab-content' wx:if="{{todayClass.length}}">
             <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}">
               <view class='course-avatar-wrap'>
-                <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill" mode="aspectFill"></image>
+                <image class="course-avatar" src="{{item.mainPicUrl}}" mode="aspectFill"></image>
               </view>
               <view class='course-info'>
                 <view class='course-org-name'>
@@ -65,9 +65,9 @@
 
         <view wx:else>
           <view class='tab-content' wx:if="{{dataSet.length}}">
-            <view class='course-list-item' bindtap='goClassDetail' data-type="{{item.type}}" wx:for="{{dataSet}}" wx:key="{{index}}" data-id="{{item.id}}">
+            <view class='course-list-item' wx:for="{{dataSet}}" wx:key="{{index}}">
               <view class='course-avatar-wrap'>
-                <image class="course-avatar" src="{{item.mainPicUrl}}" mode="scaleToFill"></image>
+                <image class="course-avatar" src="{{item.mainPicUrl}}" mode="aspectFill"></image>
               </view>
               <view class='course-info'>
                 <view class='course-org-name'>
@@ -82,6 +82,11 @@
                     <view class='num'>{{item.enteredNum}}</view>人上课
                   </view>
                   <view class="{{'course-status ' + (item.status == 'end' ? 'disabled' : '')}}">{{item.statusText}}</view>
+                </view>
+
+                <view class='course-actions'>
+                  <view class='btn btn-ghost' wx:if="{{item.status != 'save'}}" bindtap='goManagePage' data-type="{{item.type}}" data-id="{{item.id}}">随堂管理</view>
+                  <view class='btn btn-ghost' catchtap='goCourseDetail' data-courseid="{{item.courseId}}">产品详情</view>
                 </view>
               </view>
             </view>

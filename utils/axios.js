@@ -13,7 +13,7 @@ function GET(apiPath, success, fail, complete) {
   request(apiPath, 'GET', param, success, fail, complete);
 }
 
-function request(apiPath, method, param, success, axios) {
+function request(apiPath, method, param, success, complete) {
   const url = CONFIG.apiUrl + apiPath;
   const data = param;
 
@@ -38,6 +38,9 @@ function request(apiPath, method, param, success, axios) {
           processLoginError(result)
         } else {
           processRequestError(result)
+        }
+        if(fail) {
+          fail()
         }
       } else {
         success(result);
