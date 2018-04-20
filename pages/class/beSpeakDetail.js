@@ -54,10 +54,9 @@ Page({
   },
 
   doCheckComment(e) {
-    let classId = e.currentTarget.dataset.classid
-    let time = e.currentTarget.dataset.time
+    let classScheduleId = e.currentTarget.dataset.schedule
     wx.navigateTo({
-      url: `/pages/comment/comment?classId=${classId}&time=${time}`,
+      url: `/pages/comment/comment?classScheduleId=${classScheduleId}`,
     })
   },
 

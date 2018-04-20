@@ -7,15 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    childList: [],
-    loadingChild: true
-  },
-
-  doCheckComment(e) {
-    let classCatalogId = e.currentTarget.dataset.classcatelogid
-    wx.navigateTo({
-      url: `/pages/comment/comment?classCatalogId=${classCatalogId}`,
-    })
+    dataSet: [],
+    page: 0,
+    size: 10,
+    last: false,
+    loading: true
   },
 
   /**
@@ -25,14 +21,28 @@ Page({
     this.setData({
       classId: options.classId
     });
+
+    this.getListData()
   },
 
-  getClassChild(classId) {
+  getListData(loadMore) {
     const self = this
-    AXIOS.POST('auth/organ/account/class/child/all', { classId }, res => {
+    let page = loadMore ? self.data.page + 1 : 0
+    let size = self.data.size || 10
+    let classId = self.data.classId || ''
+    AXIOS.POST('auth/organ/account/class/child/all', {
+      page, size, classId
+    }, (res) => {
+      const result = res.result || {}
+      let content = result.content || []
+      if (page > 0) {
+        content = self.data.dataSet.concat(content)
+      }
       self.setData({
-        loadingChild: false,
-        childList: res.result || []
+        loading: false,
+        dataSet: content,
+        page: result.number || 0,
+        last: result.last
       })
     })
   },
@@ -45,7 +55,7 @@ Page({
     })
   },
 
-  getBespeakList(e){
+  goBespeakList(e){
     const self = this
     let childId = e.currentTarget.dataset.id
     let classId = self.data.classId
@@ -66,8 +76,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let classId = this.data.classId
-    this.getClassChild(classId)
+    this.getListData()
   },
 
   /**
@@ -88,14 +97,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getListData()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (!this.data.last) {
+      this.getListData(true)
+    }
   },
 
   /**

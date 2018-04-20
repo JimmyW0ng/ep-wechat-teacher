@@ -12,7 +12,7 @@
         <view class='course-desc' wx:if="{{item.catalogDesc}}">内容：{{item.catalogDesc}}</view>
 
         <view class='course-bottom-info'>
-          <view class='btn-ghost' data-classid="{{item.classId}}" data-time="{{item.startTimeStamp}}" bindtap='doCheckComment'>
+          <view class='btn-ghost' data-schedule="{{item.classScheduleId}}" bindtap='doCheckComment'>
             {{item.evaluateFlag ? '查看评价' : '去评价'}}
           </view>
         </view>

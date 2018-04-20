@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "班次成员",
+    "enablePullDownRefresh": true,
   "usingComponents": {
     "loadIcon": "../../components/loadIcon/loadIcon"
   }
