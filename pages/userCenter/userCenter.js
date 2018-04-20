@@ -127,7 +127,7 @@ Page({
     let classId = e.currentTarget.dataset.classid
     let time = e.currentTarget.dataset.time
     wx.navigateTo({
-      url: `/pages/comment/comment?classId=${classId}&time=${time}`,
+      url: `/pages/comment/studentList?classId=${classId}&time=${time}`,
     })
   },
 
