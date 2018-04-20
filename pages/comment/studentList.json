@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "学员列表",
+      "enablePullDownRefresh": true,
+  "usingComponents": {
+    "tag-list": "../../components/tagList/tagList",
+    "loadIcon": "../../components/loadIcon/loadIcon"
+  }
+}

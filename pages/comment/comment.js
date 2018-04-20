@@ -8,24 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    totalElements: 0,
-
-    childList: [
-      // {
-      //   avatar: '',
-      //   childNickName: '',
-      //   id: '',
-      //   tags: '',
-      //   evaluateFlag: '',
-      // }
-    ],
-
-    classCatalog: {},
     courseTagList: [],
-
-    selectedChild: {
-
-    },
+    child: {},
     classId: '',
     startTimeStamp: '',
     comment: '',
@@ -36,36 +20,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let classId = options.classId
-    let startTimeStamp = options.time
-
-    this.setData({ classId, startTimeStamp })
-    this.getData(classId, startTimeStamp)
+    let classScheduleId = options.classScheduleId
+    this.getData(classScheduleId)
   },
 
-  getData(classId, startTimeStamp) {
+  getData(classScheduleId) {
     const self = this
-    AXIOS.POST('auth/organ/account/class/catalog/init', {
-      classId, startTimeStamp
+    AXIOS.POST('auth/organ/account/class/catalog/view', {
+      classScheduleId
     }, res => {
       let result = res.result || {}
-      let childList = result.childList || []
-
+      // TODO
       self.setData({
         loading: false,
-        childList,
-        selectedChild: childList[0] || {},
-        classCatalog: result.classCatalog || {},
+        child: result.child || {},
         courseTagList: result.courseTagList || [],
       })
-    })
-  },
-
-  selectChild(e) {
-    let index = e.currentTarget.dataset.index
-    let selectedChild = this.data.childList[index]
-    this.setData({
-      selectedChild
     })
   },
 
@@ -90,9 +60,8 @@ Page({
 
   cancelComment() {
     let self = this
-    let selectedChild = self.data.selectedChild || {}
-    let childId = selectedChild.childId || ''
-    let classScheduleId = selectedChild.classScheduleId || ''
+    let child = self.data.child || {}
+    let classScheduleId = child.classScheduleId || ''
 
     wx.showModal({
       title: '提示',
@@ -109,22 +78,14 @@ Page({
             self.data.courseTagList.map((item, index) => {
               item.isActive = false
             })
-            let childList = self.data.childList
-            let tempChild = {}
-            childList.map((item, index) => {
-              if (item.childId == childId) {
-                item.evaluateFlag = false
-                item.tags = []
-                item.comment = ''
-                tempChild = item
-              }
-            })
+            child.evaluateFlag = false
+            child.tags = []
+            child.comment = ''
 
             self.setData({
-              childList,
               comment: '',
               courseTagList: self.data.courseTagList,
-              selectedChild: tempChild
+              child
             })
           })
         }
@@ -134,9 +95,8 @@ Page({
 
   doComment() {
     const self = this
-    let selectedChild = self.data.selectedChild || {}
-    let classScheduleId = selectedChild.classScheduleId || ''
-    let childId = selectedChild.childId || ''
+    let child = this.data.child || {}
+    let classScheduleId = child.classScheduleId || ''
     let tagIds = []
     let tempTags = []
 
@@ -167,72 +127,15 @@ Page({
       self.data.courseTagList.map((item, index) => {
         item.isActive = false
       })
-      let childList = self.data.childList
-      let tempChild = {}
-      childList.map((item, index) => {
-        if (item.childId == childId) {
-          item.evaluateFlag = true
-          item.tags = tempTags
-          item.comment = comment || ''
-          tempChild = item
-        }
-      })
+      child.evaluateFlag = true
+      child.tags = tempTags
+      child.comment = comment || ''
 
       self.setData({
-        childList,
         comment: '',
         courseTagList: self.data.courseTagList,
-        selectedChild: tempChild
+        child
       })
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

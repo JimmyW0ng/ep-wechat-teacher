@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "随堂管理",
+    "enablePullDownRefresh": true,
   "usingComponents": {
     "loadIcon": "../../components/loadIcon/loadIcon"
   }

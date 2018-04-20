@@ -12,12 +12,24 @@ Page({
     catalogList: [],
     childList: [],
     loadingCatalog: true,
-    loadingChild: true
+    loadingChild: true,
+
+    classId: '',
+    dataSet: [],
+    page: 0,
+    size: 10,
+    last: false,
+    loading: true
   },
 
   selectTab(e) {
     const self = this
-    var tab = e.currentTarget.dataset.tab
+    let tab = e.currentTarget.dataset.tab
+
+    if(tab == 1){
+      this.getListData()
+    }
+
     self.setData({
       selectedTab: tab
     })
@@ -34,7 +46,7 @@ Page({
     let classId = e.currentTarget.dataset.classid
     let time = e.currentTarget.dataset.time
     wx.navigateTo({
-      url: `/pages/comment/comment?classId=${classId}&time=${time}`,
+      url: `/pages/comment/studentList?classId=${classId}&time=${time}`,
     })
   },
 
@@ -55,7 +67,6 @@ Page({
         });
       }
     });
-
   },
 
   getNormalClassCatalog(classId) {
@@ -68,12 +79,25 @@ Page({
     })
   },
 
-  getClassChild(classId) {
+  getListData(loadMore) {
     const self = this
-    AXIOS.POST('auth/organ/account/class/child/all', { classId }, res => {
+    let classId = this.data.classId
+
+    let page = loadMore ? self.data.page + 1 : 0
+    let size = self.data.size || 10
+    AXIOS.POST('auth/organ/account/class/child/all', {
+      classId, page, size,
+    }, (res) => {
+      const result = res.result || {}
+      let content = result.content || []
+      if (page > 0) {
+        content = self.data.dataSet.concat(content)
+      }
       self.setData({
         loadingChild: false,
-        childList: res.result || []
+        dataSet: content,
+        page: result.number || 0,
+        last: result.last
       })
     })
   },
@@ -98,8 +122,10 @@ Page({
    */
   onShow: function () {
     let classId = this.data.classId
+    this.setData({
+      classId
+    })
     this.getNormalClassCatalog(classId)
-    this.getClassChild(classId)
   },
 
   /**
@@ -120,14 +146,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getListData()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (!this.data.last) {
+      this.getListData(true)
+    }
   },
 
   /**

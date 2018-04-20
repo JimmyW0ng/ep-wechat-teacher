@@ -1,0 +1,13 @@
+<loadIcon wx:if="{{loading}}"></loadIcon>
+<view wx:else>
+  <view wx:if="{{dataSet.length}}">
+    <view class='student-list-item' wx:for="{{dataSet}}" wx:key="index" bindtap='goComment' data-schedule="{{item.classScheduleId}}">
+      <view class='student-left'>
+        <image class='student-avatar' src="{{item.avatar || '../../asset/img/avatar-woman.png'}}"></image>
+        <view class='student-name'>{{item.childNickName}}</view>
+      </view>
+      <view class='student-count'>{{item.evaluateFlag ? '已评价' : '未评价'}}</view>
+    </view>
+  </view>
+  <view class='no-data-text' wx:else>暂无数据</view>
+</view>

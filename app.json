@@ -13,7 +13,8 @@
     "pages/class/beSpeakClassDetail",
     "pages/class/beSpeakDetail",
     "pages/course/courseDetail",
-    "pages/course/courseCommentPage/courseCommentPage"
+    "pages/course/courseCommentPage/courseCommentPage",
+    "pages/comment/studentList"
   ],
   "window": {
     "backgroundTextStyle": "white",

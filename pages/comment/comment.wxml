@@ -2,32 +2,24 @@
 
 <view wx:else>
   <view class="course-info">
-    <view class='course-name'>{{selectedChild.catalogTitle}}</view>
-    <view class='course-desc' wx:if="{{selectedChild.catalogDesc}}">内容：{{selectedChild.catalogDesc}}</view>
+    <view class='course-name'>{{child.catalogTitle}}</view>
+    <view class='course-desc' wx:if="{{child.catalogDesc}}">内容：{{child.catalogDesc}}</view>
   </view>
 
-  <scroll-view scroll-x="{{true}}" style="width: 100%" class='student-selector'>
-    <view class="{{'child-item ' + (item.childId == selectedChild.childId ? 'selected' : '')}}" wx:for="{{childList}}" wx:key="{{index}}" data-index="{{index}}" bindtap='selectChild'>
-      <image class='child-avatar' src="{{item.avatar || '../../asset/img/avatar-man.png'}}" mode="aspectFill"></image>
-      <view class='child-name'>{{item.childNickName}}</view>
-      <view wx:if="{{item.evaluateFlag}}" class='icon-active iconfont icon-right1'></view>
-    </view>
-  </scroll-view>
-
-  <view class='student-info' wx:if="{{selectedChild.childId}}">
+  <view class='student-info' wx:if="{{child.childId}}">
     <view class='avatar-wrap'>
-      <image class='avatar' src="{{selectedChild.avatar || '../../asset/img/avatar-man.png'}}"></image>
+      <image class='avatar' src="{{child.avatar || '../../asset/img/avatar-man.png'}}"></image>
     </view>
-    <view class='name'>{{selectedChild.childNickName}}</view>
+    <view class='name'>{{child.childNickName}}</view>
 
     <view class='title'>
       <view class='title-text'>今日表现</view>
     </view>
 
-    <view wx:if="{{selectedChild.evaluateFlag}}">
-      <tag-list otherstyle="border:none; padding: 0 20px 20px 0" tags="{{selectedChild.tags}}"></tag-list>
-      <view class='content-wrap' wx:if="{{selectedChild.comment}}">
-        {{selectedChild.comment || ''}}
+    <view wx:if="{{child.evaluateFlag}}">
+      <tag-list otherstyle="border:none; padding: 0 20px 20px 0" tags="{{child.tags}}"></tag-list>
+      <view class='content-wrap' wx:if="{{child.comment}}">
+        {{child.comment || ''}}
       </view>
 
       <view class='btn-wrap'>

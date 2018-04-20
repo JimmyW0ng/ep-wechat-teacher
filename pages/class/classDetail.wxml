@@ -7,7 +7,6 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h">
       <loadIcon wx:if="{{loadingCatalog}}"></loadIcon>
-
       <view wx:else>
         <view class='tab-content' wx:if="{{catalogList.length}}">
           <view class='course-list-item' wx:for="{{catalogList}}" wx:key="index">
@@ -16,18 +15,14 @@
                 <view class='course-org-name'>{{item.catalogTitle}}</view>
                 <view class='course-date'>{{item.startTimeFormat}}</view>
               </view>
-
               <view class='course-desc' wx:if="{{item.catalogDesc}}">内容：{{item.catalogDesc}}</view>
-
               <view class='course-bottom-info'>
                 <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.childNum}}人</view>
                 <view class='btn-ghost' data-classid="{{item.classId}}" data-time="{{item.startTimeStamp}}" bindtap='doCheckComment'>随堂评价</view>
               </view>
             </view>
           </view>
-
         </view>
-
         <view class='no-data-text' wx:else>暂无数据</view>
       </view>
     </scroll-view>
@@ -36,10 +31,9 @@
   <swiper-item>
     <scroll-view scroll-y="{{true}}" class="scoll-h">
       <loadIcon wx:if="{{loadingChild}}"></loadIcon>
-
       <view wx:else>
-        <view class='tab-content' wx:if="{{childList.length}}">
-          <view class='student-list-item' wx:for="{{childList}}" wx:key="index" bindtap='goChildDetail' data-id="{{item.id}}">
+        <view class='tab-content' wx:if="{{dataSet.length}}">
+          <view class='student-list-item' wx:for="{{dataSet}}" wx:key="index" bindtap='goChildDetail' data-id="{{item.id}}">
             <view class='student-left'>
               <image class='student-avatar' src="{{item.avatar || '../../asset/img/avatar-woman.png'}}"></image>
               <view class='student-name'>{{item.childNickName}}</view>
@@ -47,7 +41,6 @@
             <view class='student-count'>{{item.scheduleCommentNum || 0}}条评价</view>
           </view>
         </view>
-
         <view class='no-data-text' wx:else>暂无数据</view>
       </view>
     </scroll-view>
