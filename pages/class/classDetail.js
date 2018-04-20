@@ -24,9 +24,11 @@ Page({
   selectTab(e) {
     const self = this
     let tab = e.currentTarget.dataset.tab
-
+    let classId = this.data.classId
     if(tab == 1){
       this.getListData()
+    } else {
+      this.getNormalClassCatalog(classId)
     }
 
     self.setData({
@@ -145,7 +147,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getListData()
+    const self = this
+    let tab = self.data.tab
+    let classId = this.data.classId
+    if (tab == 1) {
+      this.getListData()
+    } else {
+      this.getNormalClassCatalog(classId)
+    }
   },
 
   /**
