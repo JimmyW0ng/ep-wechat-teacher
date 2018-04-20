@@ -1,9 +1,24 @@
 /* pages/userCenter/userCenter.wxss */
 
-swiper-item {
-  overflow-y: scroll;
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  border-bottom: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  height: 50px;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  background: #fff;
 }
 
+.tab-isbody {
+  margin-top: 50px;
+}
 .course-list-item {
   display: flex;
   align-items: top;
@@ -91,8 +106,6 @@ swiper-item {
   color: #a4afbf;
 }
 
-.course-detail-footer {
-}
 
 .student-list-item {
   display: flex;

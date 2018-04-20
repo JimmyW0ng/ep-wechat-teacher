@@ -19,7 +19,6 @@ Page({
     page: 0,
     size: 10,
     last: false,
-    loading: true
   },
 
   selectTab(e) {
