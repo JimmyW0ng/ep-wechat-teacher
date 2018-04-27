@@ -13,7 +13,7 @@ function GET(apiPath, success, fail, complete) {
   request(apiPath, 'GET', param, success, fail, complete);
 }
 
-function request(apiPath, method, param, success, complete) {
+function request(apiPath, method, param, success, fail, complete) {
   const url = CONFIG.apiUrl + apiPath;
   const data = param;
 
