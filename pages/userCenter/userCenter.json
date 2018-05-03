@@ -1,6 +1,7 @@
 {
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "我的",
-    "usingComponents": {
-      "loadIcon": "../../components/loadIcon/loadIcon"
-    }
+  "usingComponents": {
+    "loadIcon": "../../components/loadIcon/loadIcon"
+  }
 }

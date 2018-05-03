@@ -83,7 +83,7 @@ Page({
           mobile: phone,
           clientId: CONFIG.clientId,
           clientSecret: CONFIG.clientSecret,
-          scene: 'organ_account_login'
+          captchaScene: 'organ_account_login'
         }, res => {
           self.setData({
             code: res.result || '',

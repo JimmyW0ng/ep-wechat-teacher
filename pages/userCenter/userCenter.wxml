@@ -16,7 +16,88 @@
     <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>全部产品</view>
   </view>
 
-  <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
+  <view style="height:{{swiperHeight}}px">
+    <view wx:if="{{selectedTab == 0 }}">
+      <loadIcon wx:if="{{loadingToday}}"></loadIcon>
+
+      <view wx:else>
+        <view class='tab-content' wx:if="{{todayClass.length}}">
+          <view class='course-list-item' wx:for="{{todayClass}}" wx:key="{{index}}">
+            <view class='course-avatar-wrap'>
+              <image class="course-avatar" src="{{item.mainPicUrl}}" mode="aspectFill"></image>
+            </view>
+            <view class='course-info'>
+              <view class='course-org-name'>
+                {{item.courseName}}
+                <view class='course-type' wx:if="{{item.type == 'bespeak'}}">预约</view>
+              </view>
+              <view class='course-simple-info'>
+                <view class='course-name'>
+                  <view class='basic'>{{item.className}}</view>
+                  <view class='course-hour' wx:if="{{item.type == 'normal'}}">{{item.catalogIndex}}/{{item.courseNum}}</view>
+                </view>
+              </view>
+
+              <view class='course-start-date'>{{item.startTimeFormat}}</view>
+
+              <view class='course-bottom-info'>
+                <view class='course-price'>已评价: {{item.childEvaluatedNum}}/{{item.childNum}}人</view>
+
+                <view class='btn-wrap'>
+                  <view class='btn-ghost' data-classid="{{item.classId}}" data-time="{{item.startTimeStamp}}" catchtap='doCheckComment'>随堂评价</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class='no-data-text' wx:else>
+          暂无数据
+        </view>
+      </view>
+
+    </view>
+
+    <view wx:if="{{selectedTab == 1 }}">
+      <loadIcon wx:if="{{loadingAll}}"></loadIcon>
+
+      <view wx:else>
+        <view class='tab-content' wx:if="{{dataSet.length}}">
+          <view class='course-list-item' wx:for="{{dataSet}}" wx:key="{{index}}">
+            <view class='course-avatar-wrap'>
+              <image class="course-avatar" src="{{item.mainPicUrl}}" mode="aspectFill"></image>
+            </view>
+            <view class='course-info'>
+              <view class='course-org-name'>
+                {{item.courseName}}
+                <view class='course-type' wx:if="{{item.type == 'bespeak'}}">预约</view>
+              </view>
+              <view class='course-simple-info'>
+                <view class='course-name'>{{item.className}}</view>
+              </view>
+              <view class='course-bottom-info'>
+                <view class='course-price'>
+                  <view class='num'>{{item.enteredNum}}</view>人上课
+                </view>
+                <view class="{{'course-status ' + (item.status == 'end' ? 'disabled' : '')}}">{{item.statusText}}</view>
+              </view>
+
+              <view class='course-actions'>
+                <view class='btn btn-ghost' wx:if="{{item.status != 'save'}}" bindtap='goManagePage' data-type="{{item.type}}" data-id="{{item.id}}">随堂管理</view>
+                <view class='btn btn-ghost' catchtap='goCourseDetail' data-courseid="{{item.courseId}}">产品详情</view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="no-data-text" wx:else>
+          暂无数据
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <swiper style="height:{{swiperHeight}}px" indicator-dots="{{false}}" current="{{selectedTab}}" autoplay="{{false}}" bindchange="changeSwiper">
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h">
         <loadIcon wx:if="{{loadingToday}}"></loadIcon>
@@ -98,6 +179,6 @@
         </view>
       </scroll-view>
     </swiper-item>
-  </swiper>
+  </swiper> -->
 
 </view>
