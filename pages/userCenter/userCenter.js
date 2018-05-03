@@ -16,7 +16,7 @@ Page({
     todayClass: [],
     dataSet: [],
     page: 0,
-    size: 50,
+    size: 5,
     last: false,
 
     selectedTab: 0,
@@ -160,10 +160,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var self = this;
-    self.getAccountInfo()
-    // self.getTodayClass()
-    // self.getAllClass()
+    this.getAccountInfo()
   },
 
   /**
@@ -184,14 +181,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getAccountInfo()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.selectedTab == 1 && !this.data.last){
+      this.getAllClass(true)
+    }
   },
 
   /**

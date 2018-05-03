@@ -1,3 +1,0 @@
-# ep-wechat-teacher
-
-test
