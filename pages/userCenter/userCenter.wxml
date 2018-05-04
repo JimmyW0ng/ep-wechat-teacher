@@ -16,7 +16,7 @@
     <view class="tab-selector {{selectedTab == 1 && 'active'}}" data-tab="1" bindtap='selectTab'>全部产品</view>
   </view>
 
-  <view style="height:{{swiperHeight}}px; overflow-y: scroll">
+  <view style="height:{{swiperHeight}}px">
     <view wx:if="{{selectedTab == 0 }}">
       <loadIcon wx:if="{{loadingToday}}"></loadIcon>
 
