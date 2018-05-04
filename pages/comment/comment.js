@@ -65,7 +65,7 @@ Page({
 
     wx.showModal({
       title: '提示',
-      content: '确定要撤销评价么？',
+      content: '确定要撤销评价吗？',
       success: function (res) {
         if (res.confirm) {
 

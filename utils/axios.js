@@ -17,20 +17,22 @@ function request(apiPath, method, param, success, fail, complete) {
   const url = CONFIG.apiUrl + apiPath;
   const data = param;
 
-  let token = User.getToken() || ''
+  let token = User.getToken() ? (User.getToken() + '') : ''
 
   wx.showNavigationBarLoading()
+
   let header = {
     'content-type': 'application/x-www-form-urlencoded', // 默认值
   }
-  if (token) {
+
+  if (token && (token.trim().length > 0)) {
     header.Authorization = 'Bearer ' + token
   }
   wx.request({
     url,
     data,
     header,
-    method: method,
+    method,
     success: function (res) {
       const result = res.data;
       if (result.error) {
@@ -72,7 +74,7 @@ function processLoginError(result){
 }
 
 function processRequestError(result) {
-  if (result.errorDescription == "请重新登录") {
+  if (result.error == "ERROR_ACCESS_NEED_AUTH") {
     wx.showModal({
       title: '提示',
       content: result.errorDescription || '',
@@ -81,8 +83,6 @@ function processRequestError(result) {
           wx.redirectTo({
             url: LoginUrl
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })
@@ -123,48 +123,6 @@ const UPLOAD = (filePath, callback, uploadCallback) => {
       // debugger
     }
   })
-
-  // let uploadTask = wx.request({
-  //   url: 'https://rc-api-upload.xiaomai5.com/xm/oss/web/token?bucket=res', //oss token
-  //   method: "GET",
-  //   header: {
-  //     'content-type': 'application/json' // 默认值
-  //   },
-  //   success: (res) => {
-  //     const signInfo = res.data;
-  //     console.log(signInfo)
-  //     const uploadTask = wx.uploadFile({
-  //       url: 'https://res.xiaomai5.com',
-  //       filePath,
-  //       name: 'file',
-  //       header: {
-  //         'content-type': 'multipart/form-data'
-  //       },
-  //       formData: {
-  //         'key': signInfo.dir + name,
-  //         OSSAccessKeyId: signInfo.accessid,
-  //         signature: signInfo.signature,
-  //         policy: signInfo.policy,
-  //         expire: signInfo.expire,
-  //         success_action_status: '200',
-  //         callback: signInfo.callback,
-  //       },
-  //       success: (res) => {
-  //         if (callback) {
-  //           callback(JSON.parse(res.data), name)
-  //         }
-  //       }
-  //     })
-  //     uploadTask.onProgressUpdate((res) => {
-  //       if (uploadCallback) {
-  //         uploadCallback(res, name)
-  //       }
-  //       // console.log('上传进度', res.progress)
-  //       // console.log('已经上传的数据长度', res.totalBytesSent)
-  //       // console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
-  //     })
-  //   }
-  // })
 }
 
 module.exports = {
