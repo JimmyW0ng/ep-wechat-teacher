@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/cover/cover",
     "pages/userCenter/userCenter",
+    
+    "pages/cover/cover",
     "pages/comment/comment",
     "pages/child/childDetail",
     "pages/index/index",

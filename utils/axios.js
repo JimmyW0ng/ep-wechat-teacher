@@ -24,7 +24,7 @@ function request(apiPath, method, param, success, fail, complete) {
   let header = {
     'content-type': 'application/x-www-form-urlencoded', // 默认值
   }
-
+  token = 'aM1rJngVl4RLkkL07QWBxwmO'
   if (token && (token.trim().length > 0)) {
     header.Authorization = 'Bearer ' + token
   }
